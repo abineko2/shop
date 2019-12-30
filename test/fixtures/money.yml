@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  t_day: 2019-12-30
+  uriage: 1
+  yosan: 1
+  noto: MyString
+
+two:
+  t_day: 2019-12-30
+  uriage: 1
+  yosan: 1
+  noto: MyString

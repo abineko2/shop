@@ -1,0 +1,49 @@
+<div class="text-center uriage_kanri_h1">
+ 売り上げ管理ページ
+</div>
+<div style="border-top:1px dotted #c0c0c0;margin-bottom:3%;"></div>
+
+<div class="row">
+    <div class="col-md-10 col-md-offset-2">
+      <table class="table table-bordered tv1">
+        <td>
+          &emsp;&emsp;<%= link_to "←", "#",class:"btn btn-primary" %>
+            &emsp;&emsp;<%= @first_day.to_s(:month) %>&emsp;&emsp;
+          <%= link_to "→", "#",class:"btn btn-primary" %>  
+        </td>
+        <td>月売り上げ実績合計:</td>
+        <td>月売り上げ予算合計:</td>
+      </table>
+      <div style="border-top:1px dotted #c0c0c0;margin-bottom:3%;"></div>
+      <table class="table table-bordered tv2">
+        <thead>
+          <tr>
+             <th rowspan="2">日付</th>
+             <th rowspan="2">曜日</th>
+             <th colspan="2">売り上げ</th>
+             <th rowspan="2">実績</th>
+             <th rowspan="2">備考</th>
+          </tr>
+          <tr>
+            <th>売り上げ金額</th>
+            <th>日割り予算</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @dates.each do |day| %>
+           <tr>
+             <td><%= day.t_day.to_s(:date_month) %></td>
+             <td><%= %w[日 月 火 水 木 金 土][day.t_day.wday] %></td>
+             <td></td>
+             <td></td>
+             <td></td>
+             <td></td>
+           </tr>
+          <% end %>
+        </tbody>
+      </table>
+ 
+<!-- col終了 -->
+    </div>
+<!-- row終了 -->
+</div>
