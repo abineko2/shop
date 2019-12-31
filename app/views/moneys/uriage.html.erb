@@ -3,6 +3,7 @@
 </div>
 <div style="border-top:1px dotted #c0c0c0;margin-bottom:3%;"></div>
 
+
 <div class="row">
     <div class="col-md-10 col-md-offset-2">
       <table class="table table-bordered tv1">
@@ -11,10 +12,11 @@
             &emsp;&emsp;<%= @first_day.to_s(:month) %>&emsp;&emsp;
           <%= link_to "→", "#",class:"btn btn-primary" %>  
         </td>
-        <td>月売り上げ実績合計:</td>
-        <td>月売り上げ予算合計:</td>
+        <td>月売り上げ実績合計(千円単位):</td>
+        <td>月売り上げ予算合計(千円単位):</td>
       </table>
       <div style="border-top:1px dotted #c0c0c0;margin-bottom:3%;"></div>
+       <%= link_to "予算入力", writeBudget_money_path(@first_day), class:"btn btn-primary" ,style:"width:20%;margin-bottom:4px;" %>
       <table class="table table-bordered tv2">
         <thead>
           <tr>
@@ -25,8 +27,8 @@
              <th rowspan="2">備考</th>
           </tr>
           <tr>
-            <th>売り上げ金額</th>
-            <th>日割り予算</th>
+            <th>売り上げ金額(千円単位)</th>
+            <th>日割り予算(千円単位)</th>
           </tr>
         </thead>
         <tbody>
@@ -35,9 +37,9 @@
              <td><%= day.t_day.to_s(:date_month) %></td>
              <td><%= %w[日 月 火 水 木 金 土][day.t_day.wday] %></td>
              <td></td>
+             <td><strong><%= day.yosan if day.yosan.present? %></strong></td>
              <td></td>
-             <td></td>
-             <td></td>
+             <td><%= day.noto if day.noto.present? %></td>
            </tr>
           <% end %>
         </tbody>

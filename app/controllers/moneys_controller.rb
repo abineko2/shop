@@ -7,6 +7,9 @@ class MoneysController < ApplicationController
 
   #売り上げ管理表
   def uriage
+    if params[:first_day]
+      @first_day = Date.parse(params[:first_day])
+    end  
     @first_day = Date.today.beginning_of_month
     @last_day = @first_day.end_of_month
     (@first_day..@last_day).each do |day|
@@ -17,5 +20,25 @@ class MoneysController < ApplicationController
     end 
     @dates = dates 
   end
+#予算入力ページ
+  def writeBudget
+    @first_day = Date.parse(params[:date])
+    @last_day = @first_day.end_of_month
+    @dates = dates 
+  end
+#入力処理
+  def input
+    @first_day = Date.parse(params[:first_day])
+    money_parameter.each do |id, item|
+      money = Money.find id
+      money.update_attributes(item)
+    end  
+    redirect_to uriage_moneys_url(params:{first_day: params[:first_day]})
+  end
   
+private
+   def money_parameter
+     params.permit(moneys:[:yosan, :noto])[:moneys]
+   end
+     
 end
