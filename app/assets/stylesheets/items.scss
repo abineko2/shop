@@ -1,0 +1,17 @@
+// Place all the styles related to the items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.items{
+    background-color: #d0d0d0;
+    .item_h1_index{color: navy;font-weight: bold;}
+    .item_input_row{
+        background-color: #fff;
+        border-radius: 6px;
+        box-shadow: 2px 1px 3px 3px #888;
+        padding: 20px 30px;
+        margin-top: 4%;
+    }
+    .item_input_table{
+        th{background:#0f85e6;border-right: 0.5px dotted #fff;color: #fff;}
+    }
+}

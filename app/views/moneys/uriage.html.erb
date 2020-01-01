@@ -16,6 +16,7 @@
         <td>月売り上げ予算合計(千円単位):&emsp;<strong style="color:green"><%= @first_money.yosanTotal(@first_day,@last_day) %></strong></td>
       </table>
       <div style="border-top:1px dotted #c0c0c0;margin-bottom:3%;"></div>
+       <%= link_to "戻る", root_path, class:"btn btn-default" ,style:"width:20%;margin-bottom:4px;" %>
       <% if @first_money.monthCheck %>
        <%= link_to "予算入力", writeBudget_money_path(@first_day), class:"btn btn-primary" ,style:"width:20%;margin-bottom:4px;" %>
       <% end %> 

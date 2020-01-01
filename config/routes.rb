@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'items/index'
+
+  get 'items/show'
+
   resources :moneys do
     collection do
       get 'uriage'
