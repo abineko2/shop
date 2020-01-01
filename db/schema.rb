@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191230110144) do
+ActiveRecord::Schema.define(version: 20191231232320) do
+
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
+    t.integer "jan"
+    t.integer "baika"
+    t.integer "genka"
+    t.integer "stock"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "money", force: :cascade do |t|
     t.date "t_day"
