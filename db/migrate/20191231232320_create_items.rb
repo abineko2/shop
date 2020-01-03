@@ -6,7 +6,7 @@ class CreateItems < ActiveRecord::Migration[5.1]
       t.integer :jan
       t.integer :baika
       t.integer :genka
-      t.integer :stock
+      t.integer :stock,default: 0
 
       t.timestamps
     end

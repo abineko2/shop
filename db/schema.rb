@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20200101113136) do
     t.integer "jan"
     t.integer "baika"
     t.integer "genka"
-    t.integer "stock"
+    t.integer "stock", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <div class="modal-title">
+    <div class="text-center"><h4>[新規商品登録]</h4></div>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </button>
+    </div>  
+  </div>
+  <div class="modal-body text-center" >
+        <%= form_with(model:@item,local:true) do |f| %>
+        <%= f.label "商品名" %>
+        <%= f.text_field :name,class:"form-control",style:"background:#FFFFEE" %>
+
+        <%= f.label "売価" %>
+        <%= f.number_field :baika,class:"form-control",style:"background:#FFFFEE" %>
+
+        <%= f.label "原価" %>
+        <%= f.number_field :genka,class:"form-control",style:"background:#FFFFEE" %>
+
+        <%= f.label "JANコード" %>
+        <%= f.number_field :jan,class:"form-control",style:"background:#FFFFEE" %><br>
+
+        <div class="text-center">
+          <%= f.submit "送信",class:"btn btn-primary" %>
+        </div>
+
+        <% end %>
+   </div>
+</div>

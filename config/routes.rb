@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   end  
   root "moneys#index"
   get 'writeBudget/:date',to:"moneys#writeBudget",as: :writeBudget_money
+  
   resources :items
 end

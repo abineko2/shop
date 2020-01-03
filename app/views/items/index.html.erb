@@ -1,6 +1,9 @@
 <div class="text-center item_h1_index">
   <h1>商品管理表</h1>
 </div>
+<!-- モーダル -->
+<div id="item-modal" class="modal fade" role="dialog" tabindex="-1" ariahidden="true"></div>
+
 <div style="border-top:1px dotted #a0a0a0"></div>
 <!-- row -->
 <div class="row">
@@ -8,6 +11,7 @@
    <div class="col-md-9 col-md-offset-2 item_input_row">
      <div class="text-center" style="margin:0 10% 2% 0;"><h3>[一覧]</h3></div>
    <% if @items.count > 0 %>  
+    <%= form_with(url:"#",local:true,method: :patch) do |f| %>
      <table class="table item_input_table">
        <thead>
         <tr>
@@ -18,11 +22,13 @@
           <th>利益率</th>
           <th>在庫</th>
           <th>在庫金額</th>
-          <th></th>
+          <th>編集/削除</th>
+          <th>在庫管理</th>
         </tr>
        </thead> 
        <tbody>
         <% @items.each do |item| %>
+         <%= fields_for "items[]", item do |af| %>
           <tr>
             <td><%= item.name %></td>
             <td><%= item.baika %></td>
@@ -35,11 +41,15 @@
               <%= link_to "編集", "#",class:"btn btn-primary"%>
               <%= link_to "削除", "#",class:"btn btn-danger"%>
             </td>
-
+            <td style="width:10%;">
+               <%= af.number_field :stock,class:"form-control" %>
+            </td>
           </tr>
+          <% end %>
         <% end %>
        </tbody>
      </table>
+     <% end %><!-- form終了 -->
     <% else %> 
      <h2>商品が登録されてません</h2>
     <% end %> <!--商品あるか -->
@@ -48,7 +58,7 @@
   <!-- col -->
 </div><br>
 <div class="text-center">
-     <%= link_to "新規登録", root_path,class:"btn btn-primary btn-lg",style:"padding:1% 10%;" %>
+     <%= link_to "新規登録", new_item_path,remote:true,class:"btn btn-primary btn-lg",style:"padding:1% 10%;" %>
      <%= link_to "戻る", root_path,class:"btn btn-default btn-lg",style:"padding:1% 10%;" %>
 </div>
 <!-- row -->
