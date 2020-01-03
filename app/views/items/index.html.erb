@@ -6,15 +6,49 @@
 <div class="row">
   <!-- col -->
    <div class="col-md-9 col-md-offset-2 item_input_row">
-     <div class="text-center"><h3>[一覧]</h3></div>
+     <div class="text-center" style="margin:0 10% 2% 0;"><h3>[一覧]</h3></div>
+   <% if @items.count > 0 %>  
      <table class="table item_input_table">
-       <th>商品名</th>
-       <th>売価</th>
-       <th>原価</th>
-       <th>利益率</th>
-       <th>在庫</th>
+       <thead>
+        <tr>
+          <th>商品名</th>
+          <th>売価</th>
+          <th>原価</th>
+          <th>JANコード</th>
+          <th>利益率</th>
+          <th>在庫</th>
+          <th>在庫金額</th>
+          <th></th>
+        </tr>
+       </thead> 
+       <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td><%= item.name %></td>
+            <td><%= item.baika %></td>
+            <td><%= item.genka %></td>
+            <td><%= item.jan %></td>
+            <td><%= item.itemRate %>%</td>
+            <td><%= item.stock %></td>
+            <td><%= item.stockMoney %></td>
+            <td>
+              <%= link_to "編集", "#",class:"btn btn-primary"%>
+              <%= link_to "削除", "#",class:"btn btn-danger"%>
+            </td>
+
+          </tr>
+        <% end %>
+       </tbody>
      </table>
+    <% else %> 
+     <h2>商品が登録されてません</h2>
+    <% end %> <!--商品あるか -->
    </div>
+   
   <!-- col -->
+</div><br>
+<div class="text-center">
+     <%= link_to "新規登録", root_path,class:"btn btn-primary btn-lg",style:"padding:1% 10%;" %>
+     <%= link_to "戻る", root_path,class:"btn btn-default btn-lg",style:"padding:1% 10%;" %>
 </div>
 <!-- row -->

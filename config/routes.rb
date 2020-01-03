@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  get 'items/index'
-
-  get 'items/show'
-
+  
   resources :moneys do
     collection do
       get 'uriage'
@@ -11,4 +8,5 @@ Rails.application.routes.draw do
   end  
   root "moneys#index"
   get 'writeBudget/:date',to:"moneys#writeBudget",as: :writeBudget_money
+  resources :items
 end

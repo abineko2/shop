@@ -11,7 +11,7 @@ class Money < ApplicationRecord
    def monthCheck
       t_month = Date.today
       thisMonth = self.t_day
-      if thisMonth >= t_month
+      if (thisMonth.month >= t_month.month) &&   (thisMonth.year >= t_month.year)
         return true
       else  
         return false
