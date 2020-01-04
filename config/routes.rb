@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+#money ルーティング    
   resources :moneys do
     collection do
       get 'uriage'
@@ -9,5 +9,13 @@ Rails.application.routes.draw do
   root "moneys#index"
   get 'writeBudget/:date',to:"moneys#writeBudget",as: :writeBudget_money
   
-  resources :items
+#item ルーティング  
+  resources :items do
+    member do
+      get 'deleteModal'
+    end
+    collection do
+      patch 'stock'
+    end    
+  end  
 end

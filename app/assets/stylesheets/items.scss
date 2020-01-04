@@ -15,4 +15,13 @@
         background-color: beige;
         th{background:#0f85e6;border-right: 0.5px dotted #fff;color: #fff;}
     }
+    .modal-tv{
+        th{background-color: #d0d0d0;color:brown;}
+    }
+    .stock_edit{
+        display: none;
+    }
+    #bt_th{background-color: #d0d0d0;color: brown; border-radius: 6px; font-size: 6px;width: 100%;padding: 2px;}
+    #bt_th2{background-color: #d0d0d0;color: brown; border-radius: 6px; font-size: 6px;width: 100%;padding: 2px;display: none;}
+    #submit_bt{display: none;}
 }

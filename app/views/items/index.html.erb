@@ -1,3 +1,4 @@
+<%= render 'flash' %>
 <div class="text-center item_h1_index">
   <h1>商品管理表</h1>
 </div>
@@ -11,7 +12,7 @@
    <div class="col-md-9 col-md-offset-2 item_input_row">
      <div class="text-center" style="margin:0 10% 2% 0;"><h3>[一覧]</h3></div>
    <% if @items.count > 0 %>  
-    <%= form_with(url:"#",local:true,method: :patch) do |f| %>
+    <%= form_with(url:stock_items_path,local:true,method: :patch) do |f| %>
      <table class="table item_input_table">
        <thead>
         <tr>
@@ -20,10 +21,13 @@
           <th>原価</th>
           <th>JANコード</th>
           <th>利益率</th>
-          <th>在庫</th>
           <th>在庫金額</th>
           <th>編集/削除</th>
-          <th>在庫管理</th>
+          <th>
+             在庫
+             <input type="button" id="bt_th" value="在庫変更" onclick="stock()">
+             <input type="button" id="bt_th2" value="編集終了" onclick="editer()">
+          </th>
         </tr>
        </thead> 
        <tbody>
@@ -35,13 +39,15 @@
             <td><%= item.genka %></td>
             <td><%= item.jan %></td>
             <td><%= item.itemRate %>%</td>
-            <td><%= item.stock %></td>
             <td><%= item.stockMoney %></td>
             <td>
-              <%= link_to "編集", "#",class:"btn btn-primary"%>
-              <%= link_to "削除", "#",class:"btn btn-danger"%>
+              <%= link_to "編集", edit_item_path(item),remote:true,class:"btn btn-primary",style:"width:45%;"%>
+              <%= link_to "削除", deleteModal_item_path(item),remote:true,class:"btn btn-danger",style:"width:45%;"%>
             </td>
-            <td style="width:10%;">
+            <td style="width:10%;" class="stock_th">
+               <%= item.stock %>
+            </td>
+            <td style="width:10%;" class="stock_edit">
                <%= af.number_field :stock,class:"form-control" %>
             </td>
           </tr>
@@ -49,6 +55,10 @@
         <% end %>
        </tbody>
      </table>
+     <!-- 在庫確定ボタン-->
+     <div class="text-right">
+       <%= f.submit "在庫確定",class:"btn btn-primary",id:"submit_bt" %>
+     </div>
      <% end %><!-- form終了 -->
     <% else %> 
      <h2>商品が登録されてません</h2>

@@ -1,0 +1,11 @@
+<% if @flash == "1" %>
+  <div class="alert alert-success">登録しました。</div>
+<% elsif @flash == "2"%>
+  <div class="alert alert-success">編集しました。</div>
+<% elsif @flash == "3" %>  
+   <div class="alert alert-danger">削除しました。</div>
+<% elsif @flash == "4" %>  
+   <div class="alert alert-danger">失敗しました。</div>   
+<% elsif @flash == "5" %>  
+   <div class="alert alert-info">編集しました。</div>     
+<% end %>

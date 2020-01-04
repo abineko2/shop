@@ -1,7 +1,9 @@
 <div class="modal-dialog">
   <div class="modal-content">
-    <% if controller.action_name == 'new'%>
+    <% if controller.action_name == 'new' || controller.action_name == 'edit' %>
       <%= render 'form' %>
+    <% elsif controller.action_name == 'deleteModal' %>  
+      <%= render 'form2' %>
     <% end %>
  </div>
 </div>
