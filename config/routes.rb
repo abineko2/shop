@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root "sessions#new"
+
 #money ルーティング    
   resources :moneys do
     collection do
@@ -6,7 +8,7 @@ Rails.application.routes.draw do
       patch 'input'
     end  
   end  
-  root "moneys#index"
+ 
   get 'writeBudget/:date',to:"moneys#writeBudget",as: :writeBudget_money
   
 #item ルーティング  
