@@ -1,5 +1,8 @@
 class Item < ApplicationRecord
 
+#降順担保
+scope :recent, -> { order(id: :desc) }
+
  #利益率計算
   def itemRate
     baika = self.baika.to_f
