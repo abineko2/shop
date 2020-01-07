@@ -2,7 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .moneys{
+   
    background-color: #f0f0f0;
+   .tops_h1{margin-top: 8%;}
    .top-row{
        background-color: #fff;
        border-radius: 9px;
@@ -14,6 +16,7 @@
    .uriage_kanri_h1{
        color: darkgreen;
        font-size: 38px;
+       margin-top: 5%;
    }
    .tv1{
        background: #fff;
@@ -27,4 +30,23 @@
        th{background: blue; color:#fff; text-align: center;}
        td{text-align: center;}
    }
+   @media screen and (max-width: 767px){
+    .col-md-10{
+        width: 100%;
+    }
+    .tv2,.tv1{
+        margin-left: 2%;
+        width: 100%;
+    }
+    .uriage_kanri_h1{
+        margin-top: 15%;
+    }
+    .tops_h1 h1{
+        margin-top: 14%;
+        font-size: 18px;
+    }
+  } 
+  
+  
+  
 }

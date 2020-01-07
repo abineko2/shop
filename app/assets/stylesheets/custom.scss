@@ -1,2 +1,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+header{
+  .navbar{background: #444;}
+  .nav{
+      margin-left: 30%;
+      a{color: #fff;}
+    }
+
+}
+/*............................................................*/

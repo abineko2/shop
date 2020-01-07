@@ -2,7 +2,6 @@
 <html>
   <head>
     <title><%= page(yield(:title)) %></title>
-  
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
 
@@ -11,6 +10,7 @@
   </head>
 
   <body class="<%= controller.controller_name %>">
+    <%= render 'layouts/header' %>
     <%= yield %>
   </body>
 </html>

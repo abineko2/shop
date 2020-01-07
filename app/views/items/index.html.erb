@@ -1,5 +1,5 @@
 <%= render 'flash' %>
-<%= provide(:title,"ログイン") %>
+
 <div class="text-center item_h1_index">
   <h1>商品管理表</h1>
 </div>
@@ -10,7 +10,7 @@
 <!-- row -->
 <div class="row">
   <!-- col -->
-   <div class="col-md-9 col-md-offset-2 item_input_row">
+   <div class="col-md-8 col-md-offset-2 item_input_row">
      <div class="text-center" style="margin:0 10% 2% 0;"><h3>[一覧]</h3></div>
    <% if @items.count > 0 %>  
     <%= form_with(url:stock_items_path,local:true,method: :patch) do |f| %>
@@ -27,7 +27,7 @@
           <th>
              在庫
              <input type="button" id="bt_th" value="在庫変更" onclick="stock()">
-             <input type="button" id="bt_th2" value="編集終了" onclick="s">
+             <input type="button" id="bt_th2" value="編集終了" onclick="editer()">
           </th>
         </tr>
        </thead> 
@@ -42,8 +42,8 @@
             <td><%= item.itemRate %>%</td>
             <td><%= item.stockMoney %></td>
             <td>
-              <%= link_to "編集", edit_item_path(item),remote:true,class:"btn btn-primary",style:"width:45%;"%>
-              <%= link_to "削除", deleteModal_item_path(item),remote:true,class:"btn btn-danger",style:"width:45%;"%>
+              <%= link_to "編集", edit_item_path(item),remote:true,class:"btn btn-primary btns" %>
+              <%= link_to "削除", deleteModal_item_path(item),remote:true,class:"btn btn-danger btns " %>
             </td>
             <td style="width:10%;" class="stock_th">
                <%= item.stock %>
