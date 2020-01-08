@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  root "sessions#new"
-  get 'login',to:'sessions#new'
-  post 'login',to:'sessions#create'
+  root "sessions#new"                          #topページ
+  get 'login',to:'sessions#new'                #ログインページ
+  post 'login',to:'sessions#create'            #ログイン処理
+  delete 'logout',to: 'sessions#destroy'       #ログアウト処理
 
 
 #money ルーティング    

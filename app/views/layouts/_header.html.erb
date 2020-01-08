@@ -23,9 +23,13 @@
          <% if logged_in? %>
           <li><%= link_to "商品管理", items_path,style:"color:white" %></li>
           <li><%= link_to "売り上げ管理", uriage_moneys_path,style:"color:white" %></li>
-          <li><%= link_to "ログアウト", items_path,style:"color:white" %></li>
+          <li><%= link_to "ログアウト", logout_path,method: :delete,style:"color:white" %></li>
          <% end %>  
         </ul>
     </div>
     </nav>
-</header>
+</header><br><br>
+<% flash.each do |status,value| %>
+  <div class="alert alert-<%= status %>"><%= value %></div>
+<% end %>
+ 
