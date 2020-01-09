@@ -1,0 +1,27 @@
+<div class="text-center calc_div">
+  <h1>会計処理ページ</h1>
+  <div style="border-top:1px dotted #c0c0c0"></div>
+</div >
+
+<div id="app">
+  <p class="clac-number">小計:{{money}}</p>
+       <table class="table calc-table">
+         <td width=17%><p>JAN:</p></td>
+         <td><input type="number" @change="buyItem" class="form-control select" /></td>
+       </table> 
+</div>
+<table class="table table-bordered item-table">
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>価格</th>
+      <th>JANコード</th>
+       <th>個数</th>
+    </tr>
+  </thead>
+</table>
+ 
+
+<script>
+  <%= render 'script' %>
+</script>  

@@ -4,7 +4,7 @@
 .moneys{
    
    background-color: #f0f0f0;
-   .tops_h1{margin-top: 8%;}
+   .tops_h1{margin-top: 6%;}
    .top-row{
        background-color: #fff;
        border-radius: 9px;
@@ -30,6 +30,37 @@
        th{background: blue; color:#fff; text-align: center;}
        td{text-align: center;}
    }
+   /*..............会計処理......................*/
+   .calc_div{
+       margin-top: 6%;
+       h1{
+           font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+           font-weight: bold;
+           color: blue;
+       }
+   }
+   .clac-number{
+       background-color: #000;
+       color: #fff000;
+       font-size: 28px;
+       margin: 2% 0 0 20%;
+       padding: 1% 0;
+       width: 60%;
+       text-align: left;
+   }
+   .calc-table{
+       margin:2% 0 2% 20%;
+       background-color: #fffeee;
+       border-radius: 8px;
+       td{padding: 2% 2%;p{margin-top: 5px;font-weight: bold;}}
+       width: 60%;
+       .select{width: 75%;}
+   }
+   .item-table{
+       background-color: #fff;
+       margin-top: 1%;
+       th{background: #3399FF;color: #ffe;}
+   }
    @media screen and (max-width: 767px){
     .col-md-10{
         width: 100%;
@@ -45,8 +76,19 @@
         margin-top: 14%;
         font-size: 18px;
     }
-  } 
-  
-  
-  
+    /*.....calc..........*/
+  .clac-number{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 2%;;
+    }
+  .calc-table{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    p{font-size: 2px;padding-right: -4px;}
+    }
+
+ } 
 }

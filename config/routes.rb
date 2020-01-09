@@ -8,8 +8,9 @@ Rails.application.routes.draw do
 #money ルーティング    
   resources :moneys do
     collection do
-      get 'uriage'
-      patch 'input'
+      get 'uriage'                             #売り上げ管理表
+      patch 'input'                            
+      get 'calc'                               #会計処理
     end  
   end  
  
