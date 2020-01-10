@@ -29,7 +29,7 @@
              </select>
            </td>
            <td style="color:red;font-size:20px;">{{totalPrice[index]}}</td>
-           <td><button class="btn btn-danger btn-block">削除</button></td>
+           <td><button @click="deleteItem(index)" class="btn btn-danger btn-block">削除</button></td>
          </tr>
        </tbody>
      </table>
