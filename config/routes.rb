@@ -10,10 +10,10 @@ Rails.application.routes.draw do
     collection do
       get 'uriage'                             #売り上げ管理表
       patch 'input'                            
-      get 'calc'                               #会計処理
+      get 'calc'                               #会計処理ページ
     end  
   end  
- 
+  get 'sends/:jan',to:"moneys#sends", as: :send_ajax       #ajax itemデータ受信
   get 'writeBudget/:date',to:"moneys#writeBudget",as: :writeBudget_money
   
 #item ルーティング  

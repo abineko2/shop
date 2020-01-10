@@ -7,20 +7,33 @@
   <p class="clac-number">小計:{{money}}</p>
        <table class="table calc-table">
          <td width=17%><p>JAN:</p></td>
-         <td><input type="number" @change="buyItem" class="form-control select" /></td>
+         <td><input type="number" v-model.number="number" @change="buyItem" class="form-control select" /></td>
        </table> 
+       <table class="table table-bordered item-table">
+       <thead>
+         <tr>
+           <th>商品名</th>
+           <th>価格</th>
+           <th>個数</th>
+           <th>合計</th>
+           <th width=10%>取り消し</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr v-for="item,index in itemList">
+           <td>{{item.name}}</td>
+           <td>{{item.baika}}</td>
+           <td>
+             <select @change="changeNumber(item.baika,index)" v-model.number="num[index]" class="form-control">
+               <option v-for="obj in [1,2,3,4,5,6,7,8,9]">{{obj}}</option>
+             </select>
+           </td>
+           <td style="color:red;font-size:20px;">{{totalPrice[index]}}</td>
+           <td><button class="btn btn-danger btn-block">削除</button></td>
+         </tr>
+       </tbody>
+     </table>
 </div>
-<table class="table table-bordered item-table">
-  <thead>
-    <tr>
-      <th>商品名</th>
-      <th>価格</th>
-      <th>JANコード</th>
-       <th>個数</th>
-    </tr>
-  </thead>
-</table>
- 
 
 <script>
   <%= render 'script' %>

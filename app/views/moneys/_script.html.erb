@@ -3,11 +3,32 @@ var app = new Vue({
   data:{
       money: 0,
       number: null,
-      num: 1
+      num: [],
+      numlist:[],
+      totalPrice: [],
+      itemList: []
   },
   methods:{
       buyItem(){
-          alert('a');
-      }
+        var self = this;  
+        $.ajax({
+          url: 'http://localhost:3000/sends/'+self.number,
+          type: 'GET',
+          dataType:'json',
+        }).done(function(res){
+           self.itemList.push(res);
+           self.money += res.baika;
+           self.num.push(1);
+           self.numlist.push(1);
+           self.totalPrice.push(res.baika);
+        });
+        self.number = "";
+    },
+    changeNumber(price,index){
+       this.money -= this.totalPrice[index];
+       this.totalPrice[index] = this.num[index] * price;
+       this.money += this.totalPrice[index];
+
+    }
   }
 });

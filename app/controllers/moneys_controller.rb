@@ -38,7 +38,12 @@ class MoneysController < ApplicationController
     end  
     redirect_to uriage_moneys_url(params:{first_day: params[:first_day]})
   end
-  
+
+  def sends
+    item = Item.find_by(jan: params[:jan])
+    render json: item
+  end
+
 private
    def money_parameter
      params.permit(moneys:[:yosan, :noto])[:moneys]
