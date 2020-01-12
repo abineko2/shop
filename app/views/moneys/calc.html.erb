@@ -3,13 +3,27 @@
   <div style="border-top:1px dotted #c0c0c0"></div>
 </div >
 
+
 <div id="app">
+  <!-- 会計モーダル-->
+    <div id="calc-modal" class="modal fade" role="dialog" tabindex="-1" ariahidden="true">
+      <%= render 'form' %>
+    </div>
+  <!-- /会計モーダル-->
+
   <p class="clac-number">小計:{{money}}</p>
        <table class="table calc-table">
          <td width=17%><p>JAN:</p></td>
          <td><input type="number" v-model.number="number" @change="buyItem" class="form-control select" /></td>
        </table> 
-       <table class="table table-bordered item-table">
+
+       <label>
+         <%= link_to "清算する",clear_moneys_path,remote:true, class:"btn btn-lg" ,style:"background:#2C7CFF;color:#fff;margin-left:5%;" %>
+       </label>
+
+       <div style="border-top:2px dotted #d0d0d0;"></div>
+      
+       <table class="table table-bordered item-table"  v-show="!itemList.length == 0">
        <thead>
          <tr>
            <th>商品名</th>
