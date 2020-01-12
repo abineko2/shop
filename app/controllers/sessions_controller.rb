@@ -2,6 +2,9 @@ class SessionsController < ApplicationController
 
 #ログインページ
   def new
+    if logged_in?
+      redirect_to moneys_url
+    end   
   end
 
 #ログイン処理

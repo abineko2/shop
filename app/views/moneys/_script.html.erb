@@ -5,7 +5,9 @@ var app = new Vue({
       number: null,
       num: [],
       totalPrice: [],
-      itemList: []
+      itemList: [],
+      sendData: {},
+      inputMoney: null
   },
   methods:{
       buyItem(){
@@ -21,6 +23,8 @@ var app = new Vue({
            self.totalPrice.push(res.baika);
         });
         self.number = "";
+        
+        
     },
     changeNumber(price,index){
        this.money -= this.totalPrice[index];
@@ -33,6 +37,33 @@ var app = new Vue({
       this.totalPrice.splice(index,1);
       this.num.splice(index,1);
       this.itemList.splice(index,1);
-    }
+    },
+    clearMoney(){
+      this.datacheck();
+
+    },
+    datacheck(){
+      var num = this.itemList.length;
+      $("#calc-modal").modal('hide');
+        for(var i = 0; i< num; i++){
+          this.sendData[i]={name: this.itemList[i].name,number: this.num[i]};
+          
+        }
+      if (this.inputMoney > this.money){
+       $.ajax({
+           url: '/getMoney/'+this.money,
+           type: 'POST',
+           data: this.sendData,
+           dataType:'json',
+       }).done(function(){
+          console.log('ok');
+       }.bind(this),'json');
+
+         this.itemList = [];
+         this.num = [];
+         this.totalPrice = [];
+         this.sendData = {};
+      } 
+    },
   }
 });

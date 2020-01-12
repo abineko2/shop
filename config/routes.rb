@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       get 'clear'                              #会計清算モーダル"
     end   
   end  
+  post 'getMoney/:money',to:'moneys#getMoney'  #ajaxデータ格納
   get 'sends/:jan',to:"moneys#sends", as: :send_ajax       #ajax itemデータ受信
   get 'writeBudget/:date',to:"moneys#writeBudget",as: :writeBudget_money
   

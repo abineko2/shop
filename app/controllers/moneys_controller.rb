@@ -38,12 +38,34 @@ class MoneysController < ApplicationController
     end  
     redirect_to uriage_moneys_url(params:{first_day: params[:first_day]})
   end
-
+#json送信
   def sends
     item = Item.find_by(jan: params[:jan])
     render json: item
   end
+#json受信
 
+  def getMoney
+   params.values.each do |item|
+     if item["name"]  #在庫計算
+       obj = Item.find_by(name: item["name"])
+       num = obj.stock.to_i - item["number"].to_i
+       obj.stock = num
+       obj.save
+     end 
+   end
+   if params["money"]
+     money = Money.find_by(t_day: Date.today)
+     num = money.uriage.to_i
+     if num.nil?
+      num = 0
+     end
+     num += params["money"].to_i
+     money.uriage = num
+     money.save
+   end   
+  end
+  
 private
    def money_parameter
      params.permit(moneys:[:yosan, :noto])[:moneys]
