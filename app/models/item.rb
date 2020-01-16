@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+  has_many :orders, dependent: :destroy
 
 #降順担保
 scope :recent, -> { order(id: :desc) }
@@ -16,7 +17,12 @@ scope :recent, -> { order(id: :desc) }
      genka = self.genka
      return stock * genka   
    end
-   
+
+  #各商品の注文日付
+   def item_order_day
+     return self.orders.all.order('id asc')
+   end
+    
 
       
 end

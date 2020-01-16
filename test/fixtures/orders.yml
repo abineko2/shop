@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  order_day: 2020-01-14
+  oder_number: 1
+  references: 
+
+two:
+  order_day: 2020-01-14
+  oder_number: 1
+  references: 

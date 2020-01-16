@@ -1,0 +1,57 @@
+<%= provide(:title,"|発注処理") %>
+
+
+<div id="order-modal" class="modal fade" role="dialog" tabindex="-1" ariahidden="true"></div>
+
+<div class="text-center">
+ <h1>発注作業ページ</h1>
+</div>
+<div style="border-top:1px dotted #c0c0c0;"></div>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <table class="table">
+      <thead>
+        
+        <tr>
+           <th rowspan="3" colspan="2"class="item-th">商品名</th>
+            <th class="week-th" colspan="7">発注数</th>
+        </tr>
+        </tr>
+           <% @week.each do |day| %>
+              <th class="day-th"><%= day.to_s(:date_month) %></th>
+           <% end %>
+        </tr>
+        <tr>
+          
+          <% @week.each do |day| %>
+            <th class="week-th"><%= %w(日 月 火 水 木 金 土)[day.wday] %></th>
+          <% end %>
+      </thead>
+      <tbody>
+        <% @items.each do |item| %>
+         <tr>
+            <td class="item-td" rowspan="2">
+              <strong class="item-title"><%= item.name %></strong><br>
+              <strong>売価/原価<span style="color:red"><%= item.baika %></span>円/<%= item.genka %>円</strong>
+            </td>
+            <td class="order-number-info">注文数</td>
+            <% item.item_order_day.each do |day| %>
+              <td class="item-order-number">
+               <%= link_to day.oder_number, modal_order_path(day),remote:true, class:"oder-number-link" %>
+              </td>
+            <% end %>
+         </tr>
+         <tr>
+            <td class="order-info">状況</td>
+           <% item.item_order_day.each do |day| %>
+              <td class="item-order-status">
+               <%= day.status %>
+             </td>
+           <% end %>  
+         </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

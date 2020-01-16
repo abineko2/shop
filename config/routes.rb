@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   root "sessions#new"                          #topページ
   get 'login',to:'sessions#new'                #ログインページ
   post 'login',to:'sessions#create'            #ログイン処理
@@ -26,5 +27,11 @@ Rails.application.routes.draw do
     collection do
       patch 'stock'
     end    
+  end 
+#order ルーティング  
+ resources :orders do
+  member do
+    get 'modal'     #注文際モーダル
   end  
+ end 
 end
