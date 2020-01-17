@@ -20,7 +20,9 @@ scope :recent, -> { order(id: :desc) }
 
   #各商品の注文日付
    def item_order_day
-     return self.orders.all.order('id asc')
+     first = Date.today
+     last = first+6
+     return self.orders.where('order_day>=? and order_day<=?',first,last).order('id asc')
    end
     
 

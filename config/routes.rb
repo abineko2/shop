@@ -28,10 +28,14 @@ Rails.application.routes.draw do
       patch 'stock'
     end    
   end 
+
 #order ルーティング  
+
  resources :orders do
   member do
     get 'modal'     #注文際モーダル
-  end  
+    patch 'orderOne'  #注文個別
+  end
  end 
+
 end
