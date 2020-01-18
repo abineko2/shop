@@ -34,8 +34,13 @@ Rails.application.routes.draw do
  resources :orders do
   member do
     get 'modal'     #注文際モーダル
-    patch 'orderOne'  #注文個別
-  end
+    get 'one_week'  #注文一週間モーダル
+    patch 'orderOne'  #注文
+   
+  end  
+  collection do 
+    patch 'orderWeek'  #注文一週間
+  end    
  end 
 
 end

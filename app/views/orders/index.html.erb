@@ -33,7 +33,8 @@
          <tr>
             <td class="item-td" rowspan="2">
               <strong class="item-title"><%= item.name %></strong><br>
-              <strong>売価/原価<span style="color:red"><%= item.baika %></span>円/<%= item.genka %>円</strong>
+              <strong>売価/原価<span style="color:red"><%= item.baika %></span>円/<%= item.genka %>円</strong><br>
+              <%= link_to "一週間まとめて",one_week_order_path(item),remote:true,class:"btn btn-primary"%>
             </td>
             <td class="order-number-info">注文数</td>
             <% item.item_order_day.each do |day| %>

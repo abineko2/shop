@@ -1,0 +1,34 @@
+<div class="modal-dialog modal-lg">
+ <div class="modal-content">
+     <div class="modal-header">
+        <div class="text-center"><h4>[一週間分発注]</h4></div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+     </div>   
+    <div class="modal-body">
+     <%= form_with(url:orderWeek_orders_path,local:true,method: :patch) do |f| %>
+      <table class="table table-bordered week-table">
+        <thead>
+          <th width=40%;>商品名</th>
+          <% order_week.each do |day| %>
+            <th><%= day.to_s(:date_month) %></th>
+          <% end %>
+        </thead>
+        <tbody>
+        　<td><%= @item.name %></td>
+        
+           <% @item.item_order_day.each do |day| %>
+             <%= fields_for "orders[]",day do |af| %>
+               <td><%= af.number_field :oder_number,class:"form-control" %></td>
+             <% end %>
+           <% end %>
+        </tbody>
+      </table>
+      <div class="text-center">
+        <%= f.submit "確定する",class:"btn btn-primary"%>
+        <% end %>  
+      </div>
+    </div>
+   </div>
+</div>
