@@ -1,5 +1,13 @@
 <%= render 'flash' %>
 
+<!-- レコード数で分岐 -->
+<% if @items.all.count >=5 %>
+  <style>
+  .pagination{margin-bottom:-1%;}
+  </style>
+<% end %>
+
+
 <div class="text-center item_h1_index">
   <h1>商品管理表</h1>
 </div>
@@ -7,11 +15,16 @@
 <div id="item-modal" class="modal fade" role="dialog" tabindex="-1" ariahidden="true"></div>
 
 <div style="border-top:1px dotted #a0a0a0"></div>
+
 <!-- row -->
 <div class="row">
   <!-- col -->
    <div class="col-md-8 col-md-offset-2 item_input_row">
-     <div class="text-center" style="margin:0 10% 2% 0;"><h3>[一覧]</h3></div>
+   <!-- ページネーション -->
+  <%= will_paginate @items, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
+
+
+  <div class="text-center" style="margin:0 10% 2% 0;"><h3>[一覧]</h3></div>
    <% if @items.count > 0 %>  
     <%= form_with(url:stock_items_path,local:true,method: :patch) do |f| %>
      <table class="table item_input_table">

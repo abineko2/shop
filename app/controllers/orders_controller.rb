@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   def index
     order_week_model
     @week = order_week
-    @items = Item.all.order('id asc')
+    @items = Item.paginate(page: params[:page], per_page: 5).order('id asc')
   end
 
   #モーダル

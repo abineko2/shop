@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   #アイテム一覧
   def index
     @flash = params[:para] if params
-    @items = Item.all
+    @items = Item.paginate(page: params[:page], per_page: 5).order('id asc')
   end
 
   #新規登録モーダル

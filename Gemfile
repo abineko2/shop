@@ -12,6 +12,7 @@ gem 'rails', '~> 5.1.6'
 gem 'sqlite3'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
+gem 'bootstrap-will_paginate'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 gem 'font-awesome-sass', '5.3.1'
@@ -30,6 +31,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+gem 'jQuery-Validation-Engine-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

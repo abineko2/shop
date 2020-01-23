@@ -16,11 +16,11 @@
          <td width=17%><p>JAN:</p></td>
          <td><input type="number" v-model.number="number" @change="buyItem" class="form-control select" /></td>
        </table> 
-
-       <label>
-         <%= link_to "清算する",clear_moneys_path,remote:true, class:"btn btn-lg" ,style:"background:#2C7CFF;color:#fff;margin-left:5%;" %>
-       </label>
-
+       <div class="text-center">
+          <label>
+             <%= link_to "清算する",clear_moneys_path,remote:true, class:"btn btn-lg" ,style:"background:#2C7CFF;color:#fff;margin-left:5%;" %>
+          </label>
+       <div>
        <div style="border-top:2px dotted #d0d0d0;"></div>
       
        <table class="table table-bordered item-table"  v-show="!itemList.length == 0">
