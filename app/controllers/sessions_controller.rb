@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
     if user&.authenticate(params[:password])
       log_in(user)
       flash[:success] = "ようこそ#{user.name}さん"
-      redirect_to moneys_path
+      redirect_to user.buyer==true ?buyerTop_moneys_path : moneys_path 
     else
       flash.now[:danger] = "失敗です。"
       render :new

@@ -1,9 +1,15 @@
 class MoneysController < ApplicationController
+  before_action :admin_block,only:[:index]
+  before_action :buyer_block,only:[:buyerTop]
+
   def index
   end
 
   def show
   end
+#買付係トップ
+  def buyerTop
+  end  
 
   #売り上げ管理表
   def uriage
@@ -70,5 +76,23 @@ private
    def money_parameter
      params.permit(moneys:[:yosan, :noto])[:moneys]
    end
-     
+  #管理者意外のアクセス禁止
+   def admin_block
+     if !logged_in?
+       redirect_to root_url
+     elsif current_user.buyer
+       redirect_to buyerTop_moneys_url
+     end  
+   end  
+  #買付意外のアクセス禁止
+  def buyer_block
+    if !logged_in?
+      redirect_to root_url
+    elsif !current_user.buyer
+      redirect_to moneys_url
+    end  
+  end  
+
+
+
 end

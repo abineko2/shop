@@ -10,3 +10,4 @@
 end   
 User.create!(name: "管理者A", email: "admin@example.com", password:"password", password_confirmation: "password")
 User.create!(name: "管理者B", email: "admin2@example.com", password:"password", password_confirmation: "password")
+User.create!(name: "バイヤー", email: "buy@example.com", password:"password", password_confirmation: "password",buyer: true)

@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20200114142512) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
+    t.boolean "buyer", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

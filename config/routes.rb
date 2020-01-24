@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       patch 'input'                            
       get 'calc'                               #会計処理ページ
       get 'clear'                              #会計清算モーダル"
+      get 'buyerTop'
     end   
   end  
   post 'getMoney/:money',to:'moneys#getMoney'  #ajaxデータ格納
