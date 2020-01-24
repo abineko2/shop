@@ -44,14 +44,19 @@ class OrdersController < ApplicationController
     week_parameter.each do |id,item|
       order = Order.find id
       if item[:oder_number].to_i >0
-        order.status = "申請中"
+        order.status = 1
         order.update_attributes(item)
       elsif item[:oder_number].to_i <=0  
-        @order.update_attributes(status: nil)
+        order.update_attributes(status: 0)
       end  
     end  
     redirect_to orders_path
   end
+  
+#発注確認
+  def check
+  end
+  
 
 
 

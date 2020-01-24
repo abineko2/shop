@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20200114142512) do
   create_table "orders", force: :cascade do |t|
     t.date "order_day"
     t.integer "oder_number", default: 0
-    t.string "status"
+    t.integer "status", default: 0
     t.integer "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -37,10 +37,10 @@ Rails.application.routes.draw do
     get 'modal'     #注文際モーダル
     get 'one_week'  #注文一週間モーダル
     patch 'orderOne'  #注文
-   
   end  
   collection do 
     patch 'orderWeek'  #注文一週間
+    get 'check'      #注文確認
   end    
  end 
 

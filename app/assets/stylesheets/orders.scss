@@ -18,7 +18,7 @@
         .item-order-number:last-child{border-right: 1px solid #c0c0c0;}
         .item-order-status:last-child{border-right: 1px solid #c0c0c0;}
         .status-info{background:blue;color: #fff;margin: 0;}
-        .order-number-info{background:#e0e0e0;width:6%;border: 1px solid #a0a0a0;padding:2% 0;text-align: center;color:#000; font-weight: bold;}
+        .order-number-info{background:#b0b0b0;width:6%;border: 1px solid #a0a0a0;padding:2% 0;text-align: center;color:#000; font-weight: bold;}
         .order-info{background:#e0e0e0;width:6%;border: 1px solid #a0a0a0;padding:1% 0;text-align: center;color: #000; font-weight: bold;}
         .oder-number-link{font-size: 20px;text-decoration:underline;}
         
@@ -30,6 +30,8 @@
         th{background: blue;color:#fff;text-align: center;}
     }
     .orderPaginate{margin-bottom: -1%;}
+    /* 発注確認ページ　 */
+    .order-check-h1{font-weight:bold;}
     
 
     @media screen and (max-width:767px) {

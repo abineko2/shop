@@ -20,7 +20,7 @@
         
            <% @item.item_order_day.each do |day| %>
              <%= fields_for "orders[]",day do |af| %>
-               <td><%= af.number_field :oder_number,class:"form-control" %></td>
+               <td><%= af.number_field :oder_number,class:"form-control",step:0,min:0 %></td>
              <% end %>
            <% end %>
         </tbody>

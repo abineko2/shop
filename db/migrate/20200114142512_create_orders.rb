@@ -3,7 +3,7 @@ class CreateOrders < ActiveRecord::Migration[5.1]
     create_table :orders do |t|
       t.date :order_day
       t.integer :oder_number,default:0
-      t.string :status
+      t.integer :status,default: 0
       t.references :item
 
       t.timestamps

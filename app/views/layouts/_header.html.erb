@@ -29,7 +29,7 @@
            <li><%= link_to "売り上げ管理", uriage_moneys_path,style:"color:white" %></li>
            <li><%= link_to "ログアウト", logout_path,method: :delete,style:"color:white" %></li>
          <% elsif logged_in? && current_user.buyer %>
-           <li><%= link_to "注文依頼", "#",style:"color:white" %></li>
+           <li><%= link_to "注文確認", check_orders_path,style:"color:white" %></li>
            <li><%= link_to "商品管理", items_path,style:"color:white" %></li>
            <li><%= link_to "ログアウト", logout_path,method: :delete,style:"color:white" %></li>
          <% end %>  
