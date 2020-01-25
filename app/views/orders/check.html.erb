@@ -3,3 +3,49 @@
 <div class="text-center">
   <h1 class="order-check-h1">発注確認ページ</h1>
 </div>
+<div style="border-top:1px dotted #d0d0d0"></div>
+<div class="text-center" style="margin:3% 0 -2% 0;"><h4 class="order-request-h4">[  申請中の商品  ]</h4></div><br>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+
+    <% if @requestCount >0  %>
+      <% @requests.each_with_index do |day,i| %>
+        <div class="request-area">
+          <strong id="text<%= i %>" class="mytext"><%= "発注申請日:#{day.to_s(:date_month)}" %></strong>
+        　<input type="button" class="btn btn-primary table-btn" value="非/表示" onclick='requestView("<%= i %>")'/>
+          <table class="table request-table" id="table<%= i %>">
+           <thead>
+             <th>商品</th>
+             <th>申請数</th>
+             <th></th>
+          </thead>
+          <tbody>
+          <!-- viewの複雑化回避のためパーシャル-->
+            <%= render "order_item",{days: requestDay(day) } %>
+          </tbody>   
+          </table>
+        </div><!-- request-area -->
+      <% end %>   
+    <% else %>
+      <div>まだ申請中の商品はありません。</div>
+    <% end %>
+
+   </div>
+</div>
+<script>
+  
+  function requestView(i){
+    var table = $("#table"+i);
+    var text = $("#text"+i);
+    $(table).toggle(function () {
+        if ($(this).is(':visible')) {
+            text.css('color','yellow');
+        } else {
+            // 表示中の処理
+            text.css('color','white');
+        }
+    });
+    
+  }
+  
+</script>

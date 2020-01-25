@@ -24,7 +24,11 @@ scope :recent, -> { order(id: :desc) }
      last = first+6
      return self.orders.where('order_day>=? and order_day<=?',first,last).order('id asc')
    end
-    
+
+   #申請中の日付検索
+   def requestOrder
+    self.orders.where(status: 1)
+   end
 
       
 end

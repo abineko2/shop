@@ -32,6 +32,17 @@
     .orderPaginate{margin-bottom: -1%;}
     /* 発注確認ページ　 */
     .order-check-h1{font-weight:bold;}
+    .order-request-h4{font-weight: bold;color: #005FFF;margin-bottom: 2%;}
+    .request-area{background:#a0a0a0;; padding: 10px 0; text-align: center; color:#fff;font-weight: bold;margin-bottom: 1px;}
+    .request-table{
+        display: none;
+        border: 1px solid #d0d0d0;
+        th{background: #005FFF;color:#fff;border-right: 1px dotted #fff;text-align: center;}
+        .day_th{background: #b0b0b0;color:#000;font-weight: bold;}
+        td{text-align: center;font-weight: bold;vertical-align: middle;background:#fff;color: black;}
+        .item1{display: none;}
+        
+    }
     
 
     @media screen and (max-width:767px) {

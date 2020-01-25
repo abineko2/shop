@@ -22,5 +22,9 @@ module OrdersHelper
       end  
       return array
     end
+#申請日
+def requestDay(day)    
+  @days = Order.where(status: 1,order_day: day).order('order_day asc')
+end  
     
 end

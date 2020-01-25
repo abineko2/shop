@@ -55,6 +55,15 @@ class OrdersController < ApplicationController
   
 #発注確認
   def check
+    array = []
+    @requestCount = Order.where(status: 1).count  #=>申請数
+    obj = Order.where(status: 1).order('order_day asc')
+    obj.each do |ob|
+      array << ob.order_day
+    end  
+    @requests = array.uniq
+
+
   end
   
 
