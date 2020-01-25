@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   collection do 
     patch 'orderWeek'  #注文一週間
     get 'check'      #注文確認
+    patch 'requests'  #申請処理(買い付け)
   end    
  end 
 

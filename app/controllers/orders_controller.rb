@@ -57,15 +57,28 @@ class OrdersController < ApplicationController
   def check
     array = []
     @requestCount = Order.where(status: 1).count  #=>申請数
-    obj = Order.where(status: 1).order('order_day asc')
-    obj.each do |ob|
+    @orders = Order.where(status: 1).order('order_day asc')
+    @orders.each do |ob|
       array << ob.order_day
     end  
     @requests = array.uniq
-
-
+    respond_to do |format|
+      format.html do
+      end 
+      format.csv do
+        send_data render_to_string, filename: "注文:#{Date.today}.csv", type: :csv   
+      end
+    end
   end
   
+
+def requests
+  request_parameter.each do |id,item|
+    order = Order.find id
+    order.update_attributes(item)
+  end  
+  redirect_to root_path
+end
 
 
 
@@ -78,7 +91,13 @@ private
 #パラメーター一週間
 def week_parameter
   params.permit(orders:[:oder_number])[:orders]
-end    
+end 
+
+#パラメーター申請
+def request_parameter
+  params.permit(requests: [:status])[:requests]
+end
+
   
   
 end

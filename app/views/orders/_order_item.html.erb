@@ -1,7 +1,9 @@
 <% days.each do |day| %>
+ <%= fields_for "requests[]", day do |af| %>
   <tr>
     <td><%= day.item.name %></td>
     <td><%= day.oder_number %></td>
-    <td></td>
+    <td><%= af.select :status,Order.statuses.except("").keys,{},class:"form-control" %></td>
   </tr>    
+  <% end %>
 <% end %>    
