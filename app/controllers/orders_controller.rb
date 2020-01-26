@@ -68,6 +68,13 @@ class OrdersController < ApplicationController
       format.csv do
         send_data render_to_string, filename: "注文:#{Date.today}.csv", type: :csv   
       end
+      format.pdf do
+        test_pdf = TestPdf.new
+        send_data test_pdf.render,
+          filename:    'test.pdf',
+          type:        'application/pdf',
+          disposition: 'inline' # 画面に表示
+      end
     end
   end
   

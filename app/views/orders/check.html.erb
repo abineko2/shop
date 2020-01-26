@@ -5,8 +5,11 @@
 </div>
 <div style="border-top:1px dotted #d0d0d0"></div>
 <div class="text-center" style="margin:3% 0 -2% 0;">
+
   <%= link_to "CSV出力",check_orders_path(format: :csv), class: "btn btn-success" %>
+  <%= link_to "PDF出力", check_orders_path(format: :pdf),class:"btn btn-primary" %>
   <label class="order-request-h4">[  申請中の商品  ]</label>
+
 </div><br>
 <div class="row">
   <div class="col-md-10 col-md-offset-1">

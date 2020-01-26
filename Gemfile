@@ -13,6 +13,9 @@ gem 'sqlite3'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'bootstrap-will_paginate'
+gem 'prawn'
+gem 'prawn-table'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 gem 'font-awesome-sass', '5.3.1'
