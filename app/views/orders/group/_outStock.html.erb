@@ -1,0 +1,7 @@
+<%  @outStocks.each do |day| %>
+  <tr>
+     <td><%= day.item.name %></td>
+     <td><%= day.item.jan %></td>
+     <td style="text-align:center;"><%= day.oder_number %></td>
+  </tr>
+<% end %>

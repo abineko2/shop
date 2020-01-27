@@ -1,0 +1,17 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+       <th>商品名</th>
+       <th>JANコード</th>
+       <th style="width:10%;text-align:center;">発注数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render "orders/group/"+name %>
+  </tbody>
+</table>
+<div style="border-bottom: 1px dotted black"></div>
+<style>
+  table th{background:#000; color:#fff}
+  table td{background:#fff;}
+</style>

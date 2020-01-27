@@ -1,20 +1,29 @@
 class TestPdf < Prawn::Document
-    def initialize
+    def initialize(id)
       super()
       ## 日本語フォントを使用しないと日本語使えません
     font_families.update('Test' => { normal: 'vendor/fonts/ipaexm.ttf', bold: 'vendor/fonts/ipaexm.ttf' })
     font 'Test'
 
-    # 座標を表示
-    stroke_axis
+    orders = Order.where(order_day: Date.parse(id),status: 1).order('id asc')
 
+    rows = [
+      ["#{Date.parse(id).to_s(:date_month)}の発注依頼"],
+    ]
 
-    # 単純なテキストの表示
-    
-    text "申請中の商品一覧"
-    
+    table rows, cell_style: { height: 30, width: 500, padding: 0 } do
+     
+      # 文字サイズ
+      cells.size = 25
+      # 1行目はセンター寄せ
+      row(0).align = :center
+      # 1行目の背景色をff7500に
+      row(0).background_color = 'c0c0c0'
+      columns(0).width = 500
+      
+    end
      # 下に20
-     move_down 20
+     move_down 50
 
 
     # テーブルの要素は2次元配列で定義する
@@ -41,7 +50,6 @@ class TestPdf < Prawn::Document
       
     end
 
-    orders = Order.where(status: 1).order('order_day asc')
     orders.each do |order|
       rows = [
         [order.order_day.to_s(:date_month),order.item.name, order.oder_number],

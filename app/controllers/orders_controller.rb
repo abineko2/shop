@@ -69,7 +69,7 @@ class OrdersController < ApplicationController
         send_data render_to_string, filename: "注文:#{Date.today}.csv", type: :csv   
       end
       format.pdf do
-        test_pdf = TestPdf.new
+        test_pdf = TestPdf.new(params[:id])
         send_data test_pdf.render,
           filename:    'test.pdf',
           type:        'application/pdf',
@@ -78,6 +78,7 @@ class OrdersController < ApplicationController
     end
   end
   
+#申請に対する処理
 
 def requests
   request_parameter.each do |id,item|
@@ -85,6 +86,14 @@ def requests
     order.update_attributes(item)
   end  
   redirect_to root_path
+end
+
+#申請の処理後のページ
+
+def requestConfirm
+  @shippings = Order.shipping  #発送済み
+  @outStocks = Order.outStock  #在庫切れ商品
+  @endSales = Order.endSale    #終売商品
 end
 
 

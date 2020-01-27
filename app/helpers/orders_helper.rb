@@ -23,8 +23,15 @@ module OrdersHelper
       return array
     end
 #申請日
-def requestDay(day)    
-  @days = Order.where(status: 1,order_day: day).order('order_day asc')
-end  
+    def requestDay(day)    
+      @days = Order.where(status: 1,order_day: day).order('order_day asc')
+    end  
+
+#一週間分発送済み商品
+    #def shipping_order
+      #first_day = Date.today
+      #last_day = first_day+6
+      #@shipping = Order.where("order_day >=? and order_day<=?", first_day,last_day).where(status:2).order('order_day asc')
+    #end  
     
 end

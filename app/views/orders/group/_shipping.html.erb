@@ -1,0 +1,7 @@
+<% @shippings.each do |shipping| %>
+  <tr>
+     <td><%= shipping.item.name %></td>
+     <td><%= shipping.item.jan %></td>
+     <td style="text-align:center;"><%= shipping.oder_number %></td>
+  </tr>
+<% end %>
