@@ -14,7 +14,7 @@
             .item-title{font-size: 24px;}
         }
         .item-order-number{border: 1px dotted #c0c0c0;text-align: center;font-weight: bold;}
-        .item-order-status{padding: 0.5% 0;border: 1px dotted #c0c0c0;border-bottom:1px solid #c0c0c0 ;text-align: center;color: red;vertical-align: middle;font-weight: bold;}
+        .item-order-status{padding: 0.5% 0;border: 1px dotted #c0c0c0;border-bottom:1px solid #c0c0c0 ;text-align: center;color:blue;vertical-align: middle;font-weight: bold;}
         .item-order-number:last-child{border-right: 1px solid #c0c0c0;}
         .item-order-status:last-child{border-right: 1px solid #c0c0c0;}
         .status-info{background:blue;color: #fff;margin: 0;}
@@ -41,7 +41,19 @@
         .day_th{background: #b0b0b0;color:#000;font-weight: bold;}
         td{text-align: center;font-weight: bold;vertical-align: middle;background:#fff;color: black;}
         .item1{display: none;}
-        
+    }
+    .status-2{
+        font-size: 18px;
+        width:30px;
+        height:30px;
+        padding: 2% 0;
+        border-radius: 50%;
+        background-color: #005FFF;
+        color: #fff;
+    }
+    .status-3-4{
+        color: red;
+        font-size: 18px;
     }
     /*注文確認*/
     .order-confirm{margin-bottom: 1%;}
