@@ -32,6 +32,15 @@ module OrdersHelper
       #first_day = Date.today
       #last_day = first_day+6
       #@shipping = Order.where("order_day >=? and order_day<=?", first_day,last_day).where(status:2).order('order_day asc')
-    #end  
+    #end 
+
+#期限切れ処理   
+  def day_reset
+    orders = Order.where('order_day < ?',Date.today)
+    orders.each do |order|
+      order.status = 0
+      order.save
+    end  
+  end    
     
 end

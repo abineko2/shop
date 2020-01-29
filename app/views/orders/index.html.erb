@@ -48,9 +48,9 @@
               <td class="item-order-number">
                <% if (day.status == "" || day.status == "申請中") && (day.order_day >= Date.today+2) %>
                  <%= link_to day.oder_number, modal_order_path(day),remote:true, class:"oder-number-link" %>
-               <% elsif day.status == "発送済み" && (day.order_day >= Date.today+2)  %>  
+               <% elsif day.status == "発送済み"  %>  
                  <label class="status-2"><%= day.oder_number %></label>
-               <% elsif (day.status == "在庫切れ" || day.status == "終売") && (day.order_day >= Date.today+2)  %>  
+               <% elsif (day.status == "在庫切れ" || day.status == "終売")   %>  
                  <label class="status-3-4"><%= day.oder_number %></label><br>
                   <label class="status-3-4">×</label>
                <% else %>   

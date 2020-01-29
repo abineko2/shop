@@ -3,12 +3,14 @@ class MoneysController < ApplicationController
   before_action :buyer_block,only:[:buyerTop]
 
   def index
+    day_reset
   end
 
   def show
   end
 #買付係トップ
   def buyerTop
+    day_reset
   end  
 
   #売り上げ管理表
