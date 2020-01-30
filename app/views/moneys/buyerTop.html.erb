@@ -2,6 +2,19 @@
   <h1>買付係トップページ</h1>
 </div>
 <div style="border-top: 1px dotted #444"></div>
+
+<!--通知関連 -->
+<% if @requestCount > 0 %>
+  <br>
+  <div class="text-center request-p"><%= "[お知らせです]発注申請があります" %></div>
+<% end %>
+
+<% if @todayRequestCount >0 %>
+  <br>
+  <div class="text-center request-count-p"><%= "[お知らせです]本日の申請が#{@todayRequestCount}件あります。" %></div>
+<% end %>
+
+
 <div class="row">
   <div class="col-md-6 col-md-offset-3 top-row">
     <%= link_to "注文依頼処理", check_orders_path,class:"btn btn-primary top-bt" %>

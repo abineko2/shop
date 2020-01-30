@@ -3,14 +3,18 @@ class MoneysController < ApplicationController
   before_action :buyer_block,only:[:buyerTop]
 
   def index
-    day_reset
+    day_reset   #当日前初期化
+    @outStocks = Order.outStock.count  #在庫切れ数
+    @endSales = Order.endSale.count   #終売数
   end
 
   def show
   end
 #買付係トップ
   def buyerTop
-    day_reset
+    day_reset  #当日前初期化
+    @requestCount = Order.requests.count
+    @todayRequestCount = Order.where(status:1).where(order_day: Date.today).count
   end  
 
   #売り上げ管理表
