@@ -84,6 +84,11 @@ def requests
   request_parameter.each do |id,item|
     order = Order.find id
     order.update_attributes(item)
+    obj = order.item
+    if item[:status] == "発送済み"
+      obj.stock += order.oder_number
+      obj.save
+    end  
   end  
   redirect_to root_path
 end

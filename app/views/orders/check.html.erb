@@ -12,7 +12,7 @@
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
     <div class="text-left">
-       <%= link_to "CSV出力",check_orders_path(format: :csv), class: "btn btn-success",style:"width:25%;margin-bottom:1%;" %>
+       <%= link_to "CSV出力",check_orders_path(format: :csv), class: "btn btn-success",style:"width:25%;margin-bottom:1%;" if @requestCount > 0 %>
        <%= link_to "topへ",buyerTop_moneys_path,class:"btn btn-default",style:"margin-bottom:1%;" %>
        <%= link_to "返信確認ページへ",requestConfirm_orders_path,class:"btn btn-primary",style:"margin-bottom:1%;" %>
     </div>
@@ -39,10 +39,10 @@
         </div><!-- request-area --> 
       <% end %>   
     <% else %>
-      <div>まだ申請中の商品はありません。</div>
+      <div class="text-center" style="background:#fff;padding:10px 0;font-weight:bold;">まだ申請中の商品はありません。</div>
     <% end %>
     <div class ="text-center">
-       <%= f.submit "状況送信", class:"btn btn-primary",style:"margin-top:1%;" %>
+       <%= f.submit "状況送信", class:"btn btn-primary",style:"margin-top:1%;" if@requestCount > 0%>
        <% end %>
     </div>
      
