@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 20200114142512) do
 
   create_table "items", force: :cascade do |t|
     t.string "name"
-    t.integer "jan"
+    t.integer "jan", limit: 8
     t.integer "baika"
     t.integer "genka"
     t.integer "stock", default: 0

@@ -11,10 +11,12 @@
     </div>
   <!-- /会計モーダル-->
 
+  
   <p class="clac-number">小計:{{money}}</p>
+       
        <table class="table calc-table">
          <td width=17%><p>JAN:</p></td>
-         <td><input type="number" v-model.number="number" @change="buyItem" class="form-control select" /></td>
+         <td><input type="number" v-model.number="number" @change="buyItem" class="form-control select" id="nums" /></td>
        </table> 
        <div class="text-center">
           <label>
@@ -47,8 +49,6 @@
          </tr>
        </tbody>
      </table>
-</div>
-
 <script>
   <%= render 'script' %>
 </script>  

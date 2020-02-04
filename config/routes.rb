@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get 'uriage'                             #売り上げ管理表
       patch 'input'                            
       get 'calc'                               #会計処理ページ
+      get 'calc2'                              #会計処理ページスマホ
       get 'clear'                              #会計清算モーダル"
       get 'buyerTop'
     end   
@@ -31,6 +32,7 @@ Rails.application.routes.draw do
   end 
 
 #order ルーティング  
+
 
  resources :orders do
   member do

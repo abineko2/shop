@@ -36,6 +36,8 @@
 
    .request-p{color: blue; font-size: 20px; margin-bottom: -10px;}
    .request-count-p{color: red; font-size: 20px; margin-bottom:-2%;}
+   .pc-link{display: block;}
+   .phone-link{display: none;}
    /*..............会計処理......................*/
    .calc_div{
        margin-top: 6%;
@@ -67,6 +69,7 @@
        margin-top: 1%;
        th{background: #3399FF;color: #ffe;}
    }
+   
    @media screen and (max-width: 767px){
     .col-md-10{
         width: 100%;
@@ -82,6 +85,8 @@
         margin-top: 14%;
         font-size: 18px;
     }
+   .pc-link{display:none;}
+   .phone-link{display: block;}
     /*.....calc..........*/
   .clac-number{
     width: 100%;
@@ -95,6 +100,7 @@
     padding: 0;
     p{font-size: 2px;padding-right: -4px;}
     }
+    
     /*........top.................................*/
     .outstock-p{color: red; font-size: 16px; margin-bottom:5% 0 -10px 0;}
     .endsale-p{color: red; font-size: 16px; margin-bottom:1%;margin-top: 2%;}
