@@ -9,16 +9,10 @@ header{
       margin-left: 30%;
       a{color: #fff;}
     }
-  i{
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    content: "\f007";
+    i.fa { 
+      font-family:FontAwesome!important; 
   }
-  .fas{
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    content: "\f007";
-  }
+  
 
 }
 /*............................................................*/
