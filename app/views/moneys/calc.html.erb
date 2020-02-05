@@ -12,11 +12,11 @@
   <!-- /会計モーダル-->
 
   
-  <p class="clac-number">小計:{{money}}</p>
-       
+  <p id="price-number" class="clac-number">小計0:</p>
+     <div class="col-md-8 col-md-offset-2">  
        <table class="table calc-table">
          <td width=17%><p>JAN:</p></td>
-         <td><input type="number" v-model.number="number" @change="buyItem" class="form-control select" id="nums" /></td>
+         <td><input type="number" class="form-control" id="phone-number"   onChange="addPCTableItem()"/></td>
        </table> 
        <div class="text-center">
           <label>
@@ -28,27 +28,95 @@
        <table class="table table-bordered item-table"  v-show="!itemList.length == 0">
        <thead>
          <tr>
-           <th>商品名</th>
+           <th width="35%;">商品名</th>
            <th>価格</th>
-           <th>個数</th>
-           <th>合計</th>
+           <th width="10%;">個数</th>
+           <th width=20%;>合計</th>
            <th width=10%>取り消し</th>
          </tr>
        </thead>
-       <tbody>
-         <tr v-for="item,index in itemList">
-           <td>{{item.name}}</td>
-           <td>{{item.baika}}</td>
-           <td>
-             <select @change="changeNumber(item.baika,index)" v-model.number="num[index]" class="form-control">
-               <option v-for="obj in [1,2,3,4,5,6,7,8,9]">{{obj}}</option>
-             </select>
-           </td>
-           <td style="color:red;font-size:20px;">{{totalPrice[index]}}</td>
-           <td><button @click="deleteItem(index)" class="btn btn-danger btn-block">削除</button></td>
-         </tr>
+       <tbody id="tbody">
+         
        </tbody>
      </table>
+     </div>
 <script>
-  <%= render 'script' %>
+  
+  var number = document.getElementById('phone-number');
+  var btn = document.getElementById('add-button');
+  var tbody = document.getElementById('tbody');
+  var table = document.querySelector('table');
+  var priceLabel = document.getElementById('price-number');
+  var count = 0;
+  var price = 0;
+
+
+  function addPCTableItem() {
+    if(number.value == "") return;
+    $.ajax({
+          url: 'http://localhost:3000/sends/'+number.value,
+          type: 'GET',
+          dataType:'json',
+        }).done(function(res){
+          console.log(res);
+ 
+         var tr = document.createElement('tr');
+         tr.id = "tr"+count
+
+         var td = document.createElement('td');
+         td.textContent=res.name;
+
+
+         var td2 = document.createElement('td');
+         td2.textContent = res.baika;
+         td2.style.color = "red";
+         td2.id = "td"+count;
+         price += res.baika;
+         priceLabel.textContent = "小計"+price+"円";
+
+
+         var td3 = document.createElement('td');
+         var number = document.createElement("input");
+         number.type="number";
+         number.min=1;
+         number.step=1;
+         number.className="form-control";
+         number.id = "num"+count;
+         td3.appendChild(number);
+
+         var td4 = document.createElement('td');
+         td4.textContent = res.baika;
+         td4.style.color = "red";
+         price += res.baika;
+         
+
+
+
+         var td5 = document.createElement('td');
+         var deletebtn = document.createElement('button');
+         deletebtn.textContent = "削除";
+         deletebtn.id = count;
+         deletebtn.className = "btn btn-danger";
+         deletebtn.addEventListener('click',function(){
+            var tr = document.getElementById('tr'+deletebtn.id);
+            var deleteTd = document.getElementById("td"+deletebtn.id);
+            price -= Number(deleteTd.textContent);
+             priceLabel.textContent = "小計"+price+"円";
+            tbody.removeChild(tr);
+         });
+         td5.appendChild(deletebtn);
+
+         tr.appendChild(td);
+         tr.appendChild(td2);
+         tr.appendChild(td3);
+         tr.appendChild(td4);
+         tr.appendChild(td5);
+         tbody.appendChild(tr);
+          count++;
+      });
+     
+}
+
+
+
 </script>  
