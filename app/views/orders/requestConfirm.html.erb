@@ -1,0 +1,56 @@
+<%= provide(:title,"確定確認") %>
+
+<div class="text-center">
+  <h1 class="order-confirm">申請商品返信確定ページ</h1>
+  <p text-primary>[一週間]</p>
+</div>
+
+<div style="border-top:1px dotted #d0d0d0"></div>
+<div class="text-center" style="margin:2% 0 -4% 0;">
+  <label class="order-request-h4">[ 発送済みの商品  ]</label>
+</div>
+
+<!-- 発送済み -->
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+  <% if @shippings.count > 0%>
+    <%= render "orders/group/tables",{name: "shipping"} %>
+  <% else %>  
+    <div class="text-center text-primnary"><h4>該当する商品はありません。</h4></div>
+  <% end %>  
+  </div>
+</div>
+
+<div class="text-center" style="margin:2% 0 -4% 0;">
+  <label class="order-request-h4">[ 在庫切れの商品  ]</label>
+</div>
+
+<!-- 在庫切れ -->
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+  <% if  @outStocks.count > 0%>
+    <%= render "orders/group/tables",{name: "outStock"} %>
+  <% else %>  
+    <div class="text-center text-primnary"><h4>該当する商品はありません。</h4></div>
+  <% end %>  
+  </div>
+</div>
+
+<div class="text-center" style="margin:2% 0 -4% 0;">
+  <label class="order-request-h4">[ 終売の商品  ]</label>
+</div>
+
+<!-- 終売 -->
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+  <% if  @endSales.count > 0%>
+    <%= render "orders/group/tables",{name: "endSale"} %>
+  <% else %>  
+     <div class="text-center text-primnary"><h4>該当する商品はありません。</h4></div>
+  <% end %>  
+  </div>
+</div>
+
+
+

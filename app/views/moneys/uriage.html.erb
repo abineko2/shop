@@ -12,8 +12,8 @@
             &emsp;&emsp;<%= @first_day.to_s(:month) %>&emsp;&emsp;
           <%= link_to "→", uriage_moneys_path(params:{first_day: @first_day.next_month}),class:"btn btn-primary" %>  
         </td>
-        <td>月売り上げ実績合計(千円単位):&emsp;<strong style="color:red"><%= @first_money.uriageTotal(@first_day,@last_day) %></strong></td>
-        <td>月売り上げ予算合計(千円単位):&emsp;<strong style="color:green"><%= @first_money.yosanTotal(@first_day,@last_day) %></strong></td>
+        <td>月売り上げ実績合計:&emsp;<strong style="color:red"><%= @first_money.uriageTotal(@first_day,@last_day) %></strong></td>
+        <td>月売り上げ予算合計:&emsp;<strong style="color:green"><%= @first_money.yosanTotal(@first_day,@last_day) %></strong></td>
       </table>
       <div style="border-top:1px dotted #c0c0c0;margin-bottom:3%;"></div>
        <%= link_to "戻る", root_path, class:"btn btn-default" ,style:"width:20%;margin-bottom:4px;" %>
@@ -30,8 +30,8 @@
              <th rowspan="2">備考</th>
           </tr>
           <tr>
-            <th>売り上げ金額(千円単位)</th>
-            <th>日割り予算(千円単位)</th>
+            <th>売り上げ金額</th>
+            <th>日割り予算</th>
           </tr>
         </thead>
         <tbody>

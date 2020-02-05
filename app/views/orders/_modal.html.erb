@@ -1,0 +1,46 @@
+<div class="modal-dialog">
+ <div class="modal-content">
+   <div class="modal-body">
+     <div class="text-center"><h4>[商品注文]</h4></div>
+     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+       <span aria-hidden="true">&times;</span>
+    </button>
+     <div class="text-center"><h3><%= "商品名:#{@order.item.name}" %></h3></div>
+     <%= form_with(model:@order,url:orderOne_order_path(@order),local:true,methods: :patch) do |f|%>
+     <%= f.number_field :oder_number,class:"form-control",readonly:true,id:"modal-input",style:"text-align:right;background:#000;color:#fff;font-size:26px;" %><br>
+     <div style="border-top:1px dotted #c0c0c0;"></div>
+      <div class="row">
+       <div class="col-md-10 col-md-offset-1"><br>
+        <input type="button" value="1" class="btn btn-success modal_bt" onclick="modalNumber(1)"/>
+        <input type="button" value="2" class="btn btn-success modal_bt" onclick="modalNumber(2)"/>
+        <input type="button" value="3" class="btn btn-success modal_bt" onclick="modalNumber(3)"/>
+        <input type="button" value="4" class="btn btn-success modal_bt" onclick="modalNumber(4)"/><hr style="margin-top:-1%">
+        <input type="button" value="5" class="btn btn-success modal_bt" onclick="modalNumber(5)"/>
+        <input type="button" value="6" class="btn btn-success modal_bt" onclick="modalNumber(6)"/>
+        <input type="button" value="7" class="btn btn-success modal_bt" onclick="modalNumber(7)"/>
+        <input type="button" value="8" class="btn btn-success modal_bt" onclick="modalNumber(8)"/><hr style="margin-top:-1%">
+        <input type="button" value="9" class="btn btn-success modal_bt" onclick="modalNumber(9)"/>
+        <input type="button" value="0" class="btn btn-success modal_bt" onclick="modalNumber(0)"/>
+        <input type="button" value="c" class="btn btn-success modal_bt" onclick="modaldelete()"/>
+        <%=f.submit "確定",class:"btn btn-success modal_bt2"%>
+      <% end %>
+       </div> 
+      </div>
+   </div>
+ </div>
+</div>
+<script>
+ var numberField = document.getElementById('modal-input');
+ var orderNum = "";
+
+function modalNumber(num){
+  if(orderNum == "0"){
+  orderNum = String(num);
+  }
+  else{
+     orderNum += String(num);
+  }
+  numberField.value = orderNum;
+  
+}
+</script>

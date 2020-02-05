@@ -1,0 +1,24 @@
+<%= provide(:title,"ログイン") %>
+
+<div class="text-center login-head">
+  <h1 class="login_h1">🔓ログイン</h1>
+</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 sesseion-col">
+    <div class="text-center session_img"><i class="fas fa-user"></i></div><br>
+    <%= form_with(url: login_path,local:true,id:"form_id") do |f| %>
+      <div class="text-center">
+
+        <h4 class="mail-label">メールアドレス</h4>
+        <%= f.email_field :email, class:"mail-form fa validate[required]", placeholder:"\uf0e0" %>
+
+         <h4 class="mail-label">パスワード</h4>
+         <%= f.password_field :password, class:"mail-form fa validate[required]", placeholder:"\uf084" %><br><br>
+
+        <%= f.submit "送信",class:"btn btn-primary",style:"width:40%;padding:2% 0"%>
+      </div>
+    <% end %>
+  <!-- col -->
+  </div>
+<!-- row -->
+</div>

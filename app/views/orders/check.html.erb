@@ -1,0 +1,67 @@
+<%= provide(:title,"発注確認") %>
+
+<div class="text-center">
+  <h1 class="order-check-h1">発注確認ページ</h1>
+</div>
+<div style="border-top:1px dotted #d0d0d0"></div>
+<div class="text-center" style="margin:3% 0 -2% 0;">
+
+  <label class="order-request-h4">[  申請依頼中の商品  ]</label>
+
+</div><br>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="text-left">
+       <%= link_to "CSV出力",check_orders_path(format: :csv), class: "btn btn-success",style:"width:25%;margin-bottom:1%;" if @requestCount > 0 %>
+       <%= link_to "topへ",buyerTop_moneys_path,class:"btn btn-default",style:"margin-bottom:1%;" %>
+       <%= link_to "返信確認ページへ",requestConfirm_orders_path,class:"btn btn-primary",style:"margin-bottom:1%;" %>
+    </div>
+
+    <%= form_with(url:requests_orders_path,local:true,method: :patch) do |f| %>
+    <% if @requestCount >0  %>
+      <% @requests.each_with_index do |day,i| %>
+
+        <div class="request-area">
+          <strong id="text<%= i %>" class="mytext"><%= "発注申請日:#{day.to_s(:date_month)}" %></strong>
+        　<input type="button" class="btn btn-primary table-btn" value="非/表示" onclick='requestView("<%= i %>")'/>
+          <%= link_to "PDF出力", check_orders_path(params:{id: day},format: :pdf),class:"btn btn-primary" %>
+          <table class="table request-table" id="table<%= i %>">
+           <thead>
+             <th>商品</th>
+             <th>申請数</th>
+             <th></th>
+          </thead>
+          <tbody>
+          <!-- viewの複雑化回避のためパーシャル-->
+            <%= render "order_item",{days: requestDay(day) } %>
+          </tbody>   
+          </table>
+        </div><!-- request-area --> 
+      <% end %>   
+    <% else %>
+      <div class="text-center" style="background:#fff;padding:10px 0;font-weight:bold;">まだ申請中の商品はありません。</div>
+    <% end %>
+    <div class ="text-center">
+       <%= f.submit "状況送信", class:"btn btn-primary",style:"margin-top:1%;" if@requestCount > 0%>
+       <% end %>
+    </div>
+     
+   </div>
+</div>
+<script>
+  
+  function requestView(i){
+    var table = $("#table"+i);
+    var text = $("#text"+i);
+    $(table).toggle(function () {
+        if ($(this).is(':visible')) {
+            text.css('color','yellow');
+        } else {
+            // 表示中の処理
+            text.css('color','white');
+        }
+    });
+    
+  }
+  
+</script>

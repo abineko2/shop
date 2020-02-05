@@ -13,5 +13,11 @@
 //= require rails-ujs
 //= require jquery
 //= require bootstrap
+//= require jquery.validationEngine-en
+//= require jquery.validationEngine
 //= require turbolinks
 //= require_tree .
+$(document).ready(function(){
+    $("#form_id").validationEngine();
+});
+

@@ -1,0 +1,74 @@
+<%= provide(:title,"|発注処理") %>
+<!-- レコード数で分岐 -->
+<% if @items.all.count >=5 %>
+  <style>
+  .pagination{margin-bottom:-30px;}
+  </style>
+<% end %>
+
+<div id="order-modal" class="modal fade" role="dialog" tabindex="-1" ariahidden="true"></div>
+
+<div class="text-center">
+ <h1>発注作業ページ</h1>
+</div>
+<div style="border-top:1px dotted #c0c0c0;"></div>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+  <!-- ページネーション -->
+  <%= will_paginate @items, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
+    <table class="table">
+      <thead>
+        
+        <tr>
+           <th rowspan="3" colspan="2"class="item-th">商品名</th>
+            <th class="week-th" colspan="7">発注数</th>
+        </tr>
+        </tr>
+           <% @week.each do |day| %>
+              <th class="day-th"><%= day.to_s(:date_month) %></th>
+           <% end %>
+        </tr>
+        <tr>
+          
+          <% @week.each do |day| %>
+            <th class="week-th"><%= %w(日 月 火 水 木 金 土)[day.wday] %></th>
+          <% end %>
+      </thead>
+      <tbody>
+        <% @items.each do |item| %>
+         <tr>
+            <td class="item-td" rowspan="2">
+              <strong class="item-title"><%= item.name %></strong><br>
+              <strong>売価/原価<span style="color:red"><%= item.baika %></span>円/<%= item.genka %>円</strong><br>
+              <%= link_to "一週間まとめて",one_week_order_path(item),remote:true,class:"btn btn-primary"%>
+            </td>
+            <td class="order-number-info">注文数</td>
+            <% item.item_order_day.each do |day| %>
+              <td class="item-order-number">
+               <% if (day.status == "" || day.status == "申請中") && (day.order_day >= Date.today+2) %>
+                 <%= link_to day.oder_number, modal_order_path(day),remote:true, class:"oder-number-link" %>
+               <% elsif day.status == "発送済み"  %>  
+                 <label class="status-2"><%= day.oder_number %></label>
+               <% elsif (day.status == "在庫切れ" || day.status == "終売")   %>  
+                 <label class="status-3-4"><%= day.oder_number %></label><br>
+                  <label class="status-3-4">×</label>
+               <% else %>   
+                  <label style="font-size:18px;"><%= day.oder_number %></label>
+               <% end %>  
+              </td>
+            <% end %>
+         </tr>
+         <tr>
+            <td class="order-info">状況</td>
+           <% item.item_order_day.each do |day| %>
+              <td class="item-order-status">
+               <%= day.status %>
+             </td>
+           <% end %>  
+         </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

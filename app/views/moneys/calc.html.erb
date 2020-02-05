@@ -1,0 +1,54 @@
+<div class="text-center calc_div">
+  <h1>会計処理ページ</h1>
+  <div style="border-top:1px dotted #c0c0c0"></div>
+</div >
+
+
+<div id="app">
+  <!-- 会計モーダル-->
+    <div id="calc-modal" class="modal fade" role="dialog" tabindex="-1" ariahidden="true">
+      <%= render 'form' %>
+    </div>
+  <!-- /会計モーダル-->
+
+  
+  <p class="clac-number">小計:{{money}}</p>
+       
+       <table class="table calc-table">
+         <td width=17%><p>JAN:</p></td>
+         <td><input type="number" v-model.number="number" @change="buyItem" class="form-control select" id="nums" /></td>
+       </table> 
+       <div class="text-center">
+          <label>
+             <%= link_to "清算する",clear_moneys_path,remote:true, class:"btn btn-lg" ,style:"background:#2C7CFF;color:#fff;margin-left:5%;" %>
+          </label>
+       <div>
+       <div style="border-top:2px dotted #d0d0d0;"></div>
+      
+       <table class="table table-bordered item-table"  v-show="!itemList.length == 0">
+       <thead>
+         <tr>
+           <th>商品名</th>
+           <th>価格</th>
+           <th>個数</th>
+           <th>合計</th>
+           <th width=10%>取り消し</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr v-for="item,index in itemList">
+           <td>{{item.name}}</td>
+           <td>{{item.baika}}</td>
+           <td>
+             <select @change="changeNumber(item.baika,index)" v-model.number="num[index]" class="form-control">
+               <option v-for="obj in [1,2,3,4,5,6,7,8,9]">{{obj}}</option>
+             </select>
+           </td>
+           <td style="color:red;font-size:20px;">{{totalPrice[index]}}</td>
+           <td><button @click="deleteItem(index)" class="btn btn-danger btn-block">削除</button></td>
+         </tr>
+       </tbody>
+     </table>
+<script>
+  <%= render 'script' %>
+</script>  

@@ -1,4 +1,8 @@
 class Item < ApplicationRecord
+  has_many :orders, dependent: :destroy
+
+#降順担保
+scope :recent, -> { order(id: :desc) }
 
  #利益率計算
   def itemRate
@@ -13,7 +17,18 @@ class Item < ApplicationRecord
      genka = self.genka
      return stock * genka   
    end
-   
+
+  #各商品の注文日付
+   def item_order_day
+     first = Date.today
+     last = first+6
+     return self.orders.where('order_day>=? and order_day<=?',first,last).order('id asc')
+   end
+
+   #申請中の日付検索
+   def requestOrder
+    self.orders.where(status: 1)
+   end
 
       
 end

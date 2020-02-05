@@ -7,4 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 3.times do |i|
   Item.create!(name: "商品#{i}",baika: (100*i)+20, genka: (50*i)+10, jan:"12000#{i}" ,stock:20)
-end    
+end   
+User.create!(name: "管理者A", email: "admin@example.com", password:"password", password_confirmation: "password")
+User.create!(name: "管理者B", email: "admin2@example.com", password:"password", password_confirmation: "password")
+User.create!(name: "バイヤー", email: "buy@example.com", password:"password", password_confirmation: "password",buyer: true)

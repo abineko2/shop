@@ -1,10 +1,27 @@
-<div class="text-center" style="font-size:44px">
+<div class="text-center tops_h1">
+  
   <h1>システム管理トップページ</h1>
 </div>
 <div style="border-top: 1px dotted #444"></div>
+<!--通知関連 -->
+<% if @outStocks > 0%>
+  <br>
+  <div class="text-center outstock-p"><%= "[お知らせです]在庫切れ商品が#{@outStocks}件あります。" %></div>
+<% end %>
+
+<% if @endSales > 0%>
+  <br>
+  <div class="text-center endsale-p"><%= "[お知らせです]終売商品が#{@endSales}件あります。" %></div>
+<% end %>
+
+
 <div class="row">
   <div class="col-md-6 col-md-offset-3 top-row">
     <%= link_to "売り上げ管理表", uriage_moneys_path,class:"btn btn-primary top-bt" %>
     <%= link_to "商品管理表", items_path,class:"btn btn-primary top-bt" %>
+    <%= link_to "会計処理", calc_moneys_path,class:"btn btn-primary top-bt pc-link" %>
+    <%= link_to "会計処理", calc2_moneys_path,class:"btn btn-primary top-bt phone-link" %>
+    <%= link_to "発注処理",orders_path,class:"btn btn-primary top-bt" %>
   </div>
 </div>
+

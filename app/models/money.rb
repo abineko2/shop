@@ -1,5 +1,8 @@
 class Money < ApplicationRecord
-
+  
+  #降順担保
+  scope :recent, -> { order(id: :desc) }
+  
   #予算と売り上げの差額  
     def sagaku
       if self.uriage.present? && self.yosan.present?
