@@ -11,8 +11,8 @@
  * It is generally better to create a new file per style scope.
  *
  *= require validationEngine.jquery
- *= require font-awesome
  *= require_tree .
  *= require_self
  */
- @import "font-awesome";
+ @import 'font_awesome5_webfont';
+ @import 'font_awesome5.css';
