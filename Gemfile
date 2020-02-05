@@ -13,6 +13,7 @@ gem 'prawn-table'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
+gem "font-awesome-rails"
 gem 'font-awesome-sass', '5.3.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

@@ -65,6 +65,8 @@ GEM
     erubi (1.9.0)
     execjs (2.7.0)
     ffi (1.12.2)
+    font-awesome-rails (4.7.0.5)
+      railties (>= 3.2, < 6.1)
     font-awesome-sass (5.3.1)
       sassc (>= 1.11)
     globalid (0.4.2)
@@ -195,6 +197,7 @@ DEPENDENCIES
   bootstrap-will_paginate
   byebug
   capybara (~> 2.13)
+  font-awesome-rails
   font-awesome-sass (= 5.3.1)
   jQuery-Validation-Engine-rails
   jbuilder (~> 2.5)
