@@ -25,7 +25,7 @@
        <div>
        <div style="border-top:2px dotted #d0d0d0;"></div>
       
-       <table class="table table-bordered item-table"  v-show="!itemList.length == 0">
+       <table class="table table-bordered item-table" >
        <thead>
          <tr>
            <th width="35%;">商品名</th>
@@ -54,7 +54,7 @@
   function addPCTableItem() {
     if(number.value == "") return;
     $.ajax({
-          url: 'http://localhost:3000/sends/'+number.value,
+          url: 'https://young-castle-65049.herokuapp.com/sends/'+number.value,
           type: 'GET',
           dataType:'json',
         }).done(function(res){

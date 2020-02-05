@@ -7,7 +7,7 @@
 <!--カメラ-->
 <div id="interactive" class="viewport" height="100"></div>
 
-<p id="price-number" class="clac-number">小計:</p>
+<p id="price-number" class="clac-number">小計0:</p>
 
 <!-- 会計小計エリア-->
 <table class="table calc-table">
@@ -108,7 +108,7 @@ const calc = isbn => {
 function addTableItem() {
     if(number.value == "") return;
     $.ajax({
-          url: 'http://localhost:3000/sends/'+number.value,
+          url: 'https://young-castle-65049.herokuapp.com/sends/'+number.value,
           type: 'GET',
           dataType:'json',
         }).done(function(res){
