@@ -22,6 +22,6 @@ test:
 
 production:
   <<: *default
-  adapter: postgresql
-  encoding: unicode
-  pool: 5
+  database: postgresql-contoured-01171
+  username: yuki1980426@gmail.com
+  password: Wv5qH:4QUdk.m-T
