@@ -7,7 +7,7 @@
 <!--カメラ-->
 <div id="interactive" class="viewport" height="100"></div>
 
-<p class="clac-number">小計:</p>
+<p id="price-number" class="clac-number">小計:</p>
 
 <!-- 会計小計エリア-->
 <table class="table calc-table">
@@ -45,6 +45,10 @@
   var number = document.getElementById('phone-number');
   var btn = document.getElementById('add-button');
   var tbody = document.getElementById('tbody');
+  var table = document.querySelector('table');
+  var priceLabel = document.getElementById('price-number');
+  var count = 0;
+  var price = 0;
   
   Quagga.init({
   inputStream: {
@@ -109,27 +113,41 @@ function addTableItem() {
           dataType:'json',
         }).done(function(res){
           console.log(res);
+ 
          var tr = document.createElement('tr');
+         tr.id = "tr"+count
 
          var td = document.createElement('td');
          td.textContent=res.name;
          var td2 = document.createElement('td');
          td2.textContent = res.baika;
          td2.style.color = "red";
+         td2.id = "td"+count;
+         price += res.baika;
+         priceLabel.textContent = "小計"+price+"円";
+
 
          var td3 = document.createElement('td');
          var deletebtn = document.createElement('button');
          deletebtn.textContent = "削除";
+         deletebtn.id = count;
          deletebtn.className = "btn btn-danger";
+         deletebtn.addEventListener('click',function(){
+            var tr = document.getElementById('tr'+deletebtn.id);
+            var deleteTd = document.getElementById("td"+deletebtn.id);
+            price -= Number(deleteTd.textContent);
+             priceLabel.textContent = "小計"+price+"円";
+            tbody.removeChild(tr);
+         });
          td3.appendChild(deletebtn);
 
          tr.appendChild(td);
          tr.appendChild(td2);
          tr.appendChild(td3);
          tbody.appendChild(tr);
+          count++;
       });
-    
-
+     
 }
 </script>
 
