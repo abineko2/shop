@@ -13,7 +13,7 @@ gem 'prawn-table'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
-gem 'font-awesome-sass'   
+gem 'font-awesome-sass', '~> 4.5.0' 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
