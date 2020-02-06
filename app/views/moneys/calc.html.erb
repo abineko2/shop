@@ -85,8 +85,8 @@
   function addPCTableItem() {
     if(number.value == "") return;
     $.ajax({
-          /*url: 'https://young-castle-65049.herokuapp.com/sends/'+number.value,*/
-          url: 'http://localhost:3000/sends/'+number.value,
+          url: 'https://young-castle-65049.herokuapp.com/sends/'+number.value,
+          /*url: 'http://localhost:3000/sends/'+number.value,*/
           type: 'GET',
           dataType:'json',
         }).done(function(res){
