@@ -49,12 +49,14 @@
   var priceLabel = document.getElementById('price-number');
   var count = 0;
   var price = 0;
+  var beforePrice = 0; /*数値変更において前回の変更保持変数*/
 
 
   function addPCTableItem() {
     if(number.value == "") return;
     $.ajax({
-          url: 'https://young-castle-65049.herokuapp.com/sends/'+number.value,
+          /*url: 'https://young-castle-65049.herokuapp.com/sends/'+number.value,*/
+          url: 'http://localhost:3000/sends/'+number.value,
           type: 'GET',
           dataType:'json',
         }).done(function(res){
@@ -71,9 +73,6 @@
          td2.textContent = res.baika;
          td2.style.color = "red";
          td2.id = "td"+count;
-         price += res.baika;
-         priceLabel.textContent = "小計"+price+"円";
-
 
          var td3 = document.createElement('td');
          var number = document.createElement("input");
@@ -82,12 +81,33 @@
          number.step=1;
          number.className="form-control";
          number.id = "num"+count;
+         number.value = 1;
+         number.addEventListener('change',function(){
+          
+            var totalNumber = 0;   /*初期化*/
+            totalNumber += Number(td2.textContent);
+            price-=beforePrice;
+
+             var inputNumber = number.value;
+             var myid = number.id.split("num")[1]  /*id取得*/
+             var td4 = document.getElementById("total"+myid);
+           
+             totalNumber *= Number(inputNumber);
+             td4.textContent = totalNumber;      /*td4に代入*/
+             beforePrice = totalNumber;
+             price += totalNumber;
+             priceLabel.textContent = "小計"+price+"円";
+              
+         });
          td3.appendChild(number);
 
          var td4 = document.createElement('td');
          td4.textContent = res.baika;
          td4.style.color = "red";
-         price += res.baika;
+         td4.id = "total"+count;
+         price += Number(td4.textContent);
+         beforePrice = Number(td4.textContent); /*金額履歴所持*/
+         priceLabel.textContent = "小計"+price+"円";
          
 
 
