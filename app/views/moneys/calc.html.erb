@@ -20,9 +20,9 @@
                   <h3 style="color:yellow;background:#000;text-align:right" id="uriage"><span style="color:#fff;">円</span></h3>
                   <form class="form-inline">
                     <label>金額入力ください:</label>
-                    <input type="number"  class="form-control" style="width:100%;" placeholder="お預かり金額入力ください"/><br><br>
+                    <input type="number" id="input-money"  class="form-control" style="width:100%;" placeholder="お預かり金額入力ください"/><br><br>
                     <div class="text-center">
-                      <div @click="clearMoney" class="btn btn-primary">清算する</div>
+                      <input type="button" class="btn btn-primary" value="会計" onclick="clearMoney()" /></div>
                     </div>
                   </form>
                   <%=%>
@@ -85,8 +85,8 @@
   function addPCTableItem() {
     if(number.value == "") return;
     $.ajax({
-          url: 'https://young-castle-65049.herokuapp.com/sends/'+number.value,
-          /*url: 'http://localhost:3000/sends/'+number.value,*/
+          /*url: 'https://young-castle-65049.herokuapp.com/sends/'+number.value,*/
+          url: 'http://localhost:3000/sends/'+number.value,
           type: 'GET',
           dataType:'json',
         }).done(function(res){
@@ -167,6 +167,26 @@
           count++;
       });
      
+}
+/*会計処理*/
+function clearMoney() {
+  var inputMoney = document.getElementById('input-money');
+  var money = Number(inputMoney.value);
+  var tsuri = money - price;
+  if(tsuri >= 0){
+     $.ajax({
+       /* url: "http://localhost:3000/getMoney/"+money,*/
+       url: "https://young-castle-65049.herokuapp.com/getMoney/"+money,
+       type:"post",
+       dataType:"json",
+     }).done(function(res){
+
+     });
+    alert("ありがとございます。お釣りは"+String(tsuri)+"です。");
+    $('#calc-modal').modal('hide');
+  }
+  else alert("お金が足りません。");
+  
 }
 
 
