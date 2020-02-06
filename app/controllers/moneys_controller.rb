@@ -77,6 +77,11 @@ class MoneysController < ApplicationController
      money.save
    end   
   end
+
+  def clear
+    
+  end
+  
   
 private
    def money_parameter

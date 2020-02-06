@@ -4,16 +4,45 @@
 </div >
 
 
-<div id="app">
   <!-- 会計モーダル-->
     <div id="calc-modal" class="modal fade" role="dialog" tabindex="-1" ariahidden="true">
-      <%= render 'form' %>
-    </div>
-  <!-- /会計モーダル-->
-
+      <div class="modal-dialog modal-xs">
+          <div class="modal-content" style="background:#fffeee;">
+            <div class="modal-header">
+              <div class="text-center"><h5>会計処理</h5></div>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+              </div> <!-- header-->
+              <div class="modal-body">
+                <div class="text-center">
+                  <h4 style="color:blue">[合計金額]</h4>
+                  <h3 style="color:yellow;background:#000;text-align:right" id="uriage"><span style="color:#fff;">円</span></h3>
+                  <form class="form-inline">
+                    <label>金額入力ください:</label>
+                    <input type="number"  class="form-control" style="width:100%;" placeholder="お預かり金額入力ください"/><br><br>
+                    <div class="text-center">
+                      <div @click="clearMoney" class="btn btn-primary">清算する</div>
+                    </div>
+                  </form>
+                  <%=%>
+                </div>
+              </div><!-- body -->
+            
+        </div> <!-- content-->s
+        </div>  <!-- dialog-->
   
-  <p id="price-number" class="clac-number">小計0:</p>
+    </div>
+
+  <!-- /会計モーダル-->
      <div class="col-md-8 col-md-offset-2">  
+       
+        <table class="table calc-table">
+         <td width=17%><h4 style="font-weight:bold;">小計:</h4></td>
+         <td><div id="price-number" class="clac-number">0円</div></td>
+       </table> 
+
+
        <table class="table calc-table">
          <td width=17%><p>JAN:</p></td>
          <td><input type="number" class="form-control" id="phone-number"   onChange="addPCTableItem()"/></td>
@@ -50,13 +79,14 @@
   var count = 0;
   var price = 0;
   var beforePrice = 0; /*数値変更において前回の変更保持変数*/
+  var uriage = document.getElementById('uriage');
 
 
   function addPCTableItem() {
     if(number.value == "") return;
     $.ajax({
-          url: 'https://young-castle-65049.herokuapp.com/sends/'+number.value,
-          /*rl: 'http://localhost:3000/sends/'+number.value, */
+          /*url: 'https://young-castle-65049.herokuapp.com/sends/'+number.value,*/
+          url: 'http://localhost:3000/sends/'+number.value,
           type: 'GET',
           dataType:'json',
         }).done(function(res){
@@ -96,7 +126,8 @@
              td4.textContent = totalNumber;      /*td4に代入*/
              beforePrice = totalNumber;
              price += totalNumber;
-             priceLabel.textContent = "小計"+price+"円";
+             priceLabel.textContent = price+"円";
+             uriage.textContent = price+"円";
               
          });
          td3.appendChild(number);
@@ -107,7 +138,8 @@
          td4.id = "total"+count;
          price += Number(td4.textContent);
          beforePrice = Number(td4.textContent); /*金額履歴所持*/
-         priceLabel.textContent = "小計"+price+"円";
+         priceLabel.textContent = price+"円";
+         uriage.textContent = price+"円";
          
 
 
@@ -121,7 +153,7 @@
             var tr = document.getElementById('tr'+deletebtn.id);
             var deleteTd = document.getElementById("td"+deletebtn.id);
             price -= Number(deleteTd.textContent);
-             priceLabel.textContent = "小計"+price+"円";
+             priceLabel.textContent = price+"円";
             tbody.removeChild(tr);
          });
          td5.appendChild(deletebtn);

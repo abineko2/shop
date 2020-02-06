@@ -9,10 +9,10 @@
        <div class="modal-body">
          <div class="text-center">
            <h4 style="color:blue">[合計金額]</h4>
-           <h3 style="color:yellow;background:#000;text-align:right"><span style="color:#fff;">円</span></h3>
+           <h3 style="color:yellow;background:#000;text-align:right"><%= params[:data] %><span style="color:#fff;">円</span></h3>
            <form class="form-inline">
              <label>金額入力ください:</label>
-             <input type="number" v-model.number="inputMoney" class="form-control" style="width:100%;" placeholder="お預かり金額入力ください"/><br><br>
+             <input type="number"  class="form-control" style="width:100%;" placeholder="お預かり金額入力ください"/><br><br>
              <div class="text-center">
                <div @click="clearMoney" class="btn btn-primary">清算する</div>
              </div>
