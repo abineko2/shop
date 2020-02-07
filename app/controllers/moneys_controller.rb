@@ -73,19 +73,16 @@ class MoneysController < ApplicationController
       obj.stock = newNum
       obj.save
     end  
-
-    
-    #if params["money"]
-      #money = Money.find_by(t_day: Date.today)
-      #num = money.uriage.to_i
-      #if num.nil?
-        #num = 0
-      #end
-      
-      #num += params["money"].to_i
-      #money.uriage = num
-      #money.save
-    #end   
+    if params["money"]
+      money = Money.find_by(t_day: Date.today)
+      num = money.uriage.to_i
+      if num.nil?
+        num = 0
+      end
+      num += params["money"].to_i
+      money.uriage = num
+      money.save
+    end   
   end
 
 #モーダル
