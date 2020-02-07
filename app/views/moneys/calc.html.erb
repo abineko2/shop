@@ -54,7 +54,7 @@
        <div>
        <div style="border-top:2px dotted #d0d0d0;"></div>
       
-       <table class="table table-bordered item-table" >
+       <table class="table table-bordered item-table" id="item-table" >
        <thead>
          <tr>
            <th width="35%;">商品名</th>
@@ -74,24 +74,33 @@
   var number = document.getElementById('phone-number');
   var btn = document.getElementById('add-button');
   var tbody = document.getElementById('tbody');
-  var table = document.querySelector('table');
+  var table = document.getElementById('item-table');
   var priceLabel = document.getElementById('price-number');
   var count = 0;
   var price = 0;
   var beforePrice = 0; /*数値変更において前回の変更保持変数*/
   var uriage = document.getElementById('uriage');
+  var array = [];
+
+   if(count == 0){
+          table.style.display = "none";
+    }
+    else{
+      table.style.display = "table";
+    }
 
 
   function addPCTableItem() {
     if(number.value == "") return;
+    count++;
+    table.style.display = "table";
     $.ajax({
-          url: 'https://young-castle-65049.herokuapp.com/sends/'+number.value,
-          /* url: 'http://localhost:3000/sends/'+number.value,*/
+          /*url: 'https://young-castle-65049.herokuapp.com/sends/'+number.value,*/
+          url: 'http://localhost:3000/sends/'+number.value,
           type: 'GET',
           dataType:'json',
         }).done(function(res){
-          console.log(res);
- 
+        
          var tr = document.createElement('tr');
          tr.id = "tr"+count
 
@@ -120,6 +129,8 @@
 
              var inputNumber = number.value;
              var myid = number.id.split("num")[1]  /*id取得*/
+             var objName= array[myid].name         /*商品名の保持*/
+             array.splice(myid,1);                 /*一度配列から削除*/
              var td4 = document.getElementById("total"+myid);
            
              totalNumber *= Number(inputNumber);
@@ -128,6 +139,7 @@
              price += totalNumber;
              priceLabel.textContent = price+"円";
              uriage.textContent = price+"円";
+             array.push({name: objName, num: number.value,str:"cat"});/*配列に再配置*/
               
          });
          td3.appendChild(number);
@@ -164,26 +176,36 @@
          tr.appendChild(td4);
          tr.appendChild(td5);
          tbody.appendChild(tr);
-          count++;
+          
+          array.push({name: td.textContent, num: number.value,str:"cat"});
+          
       });
      
 }
 /*会計処理*/
 function clearMoney() {
+  
   var inputMoney = document.getElementById('input-money');
   var money = Number(inputMoney.value);
   var tsuri = money - price;
   if(tsuri >= 0){
      $.ajax({
-       /* url: "http://localhost:3000/getMoney/"+money,*/
-       url: "https://young-castle-65049.herokuapp.com/getMoney/"+money,
-       type:"post",
+       url: "http://localhost:3000/getMoney/"+money,
+       /*url: "https://young-castle-65049.herokuapp.com/getMoney/"+money,*/
+       type:"POST",
+       data: {obj: array},
        dataType:"json",
-     }).done(function(res){
-
+       
+     }).done(function(){
+        
      });
     alert("ありがとございます。お釣りは"+String(tsuri)+"です。");
     $('#calc-modal').modal('hide');
+    count = 0;            /*テーブルの初期化*/
+    table.style.display = "none";
+
+
+
   }
   else alert("お金が足りません。");
   

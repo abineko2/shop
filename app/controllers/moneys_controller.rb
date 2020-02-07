@@ -61,17 +61,31 @@ class MoneysController < ApplicationController
 #json受信
 
   def getMoney
-    if params["money"]
-      money = Money.find_by(t_day: Date.today)
-      num = money.uriage.to_i
-      if num.nil?
-        num = 0
-      end
+    obj = params["obj"]
+    obj.each do |id,item|
+      obj = Item.find_by(name: item.values[0])
+      itemNum = obj.stock
+      paramNum = item.values[1]
+      newNum = itemNum.to_i - paramNum.to_i
+      if newNum < 0
+        newNum = 0
+      end  
+      obj.stock = newNum
+      obj.save
+    end  
+
+    
+    #if params["money"]
+      #money = Money.find_by(t_day: Date.today)
+      #num = money.uriage.to_i
+      #if num.nil?
+        #num = 0
+      #end
       
-      num += params["money"].to_i
-      money.uriage = num
-      money.save
-    end   
+      #num += params["money"].to_i
+      #money.uriage = num
+      #money.save
+    #end   
   end
 
 #モーダル
