@@ -92,7 +92,7 @@
 
   function addPCTableItem() {
     if(number.value == "") return;
-    count++;
+    
     table.style.display = "table";
     $.ajax({
           url: 'https://young-castle-65049.herokuapp.com/sends/'+number.value,
@@ -176,7 +176,7 @@
          tr.appendChild(td4);
          tr.appendChild(td5);
          tbody.appendChild(tr);
-          
+          count++;
           array.push({name: td.textContent, num: number.value,str:"cat"});
           
       });
