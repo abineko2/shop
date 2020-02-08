@@ -180,7 +180,7 @@
           array.push({name: td.textContent, num: number.value,str:"cat"});
           
       });
-     
+     number.value = ""; /*jan入力エリア初期化*/
 }
 /*会計処理*/
 function clearMoney() {
@@ -201,6 +201,9 @@ function clearMoney() {
      });
     alert("ありがとございます。お釣りは"+String(tsuri)+"です。");
     $('#calc-modal').modal('hide');
+    price = 0;
+    number.value = "";
+    priceLabel.textContent = price+"円"; /*会計ラベル初期化
     count = 0;            /*テーブルの初期化*/
     table.style.display = "none";
 
