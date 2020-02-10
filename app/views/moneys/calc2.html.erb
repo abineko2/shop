@@ -7,7 +7,49 @@
 <!--カメラ-->
 <div id="interactive" class="viewport" height="100"></div>
 
-<p id="price-number" class="clac-number">小計0:</p>
+
+ <!-- 会計モーダル-->
+    <div id="calc-modal" class="modal fade" role="dialog" tabindex="-1" ariahidden="true">
+      <div class="modal-dialog modal-xs">
+          <div class="modal-content" style="background:#fffeee;">
+            <div class="modal-header">
+              <div class="text-center"><h5>会計処理</h5></div>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+              </div> <!-- header-->
+              <div class="modal-body">
+                <div class="text-center">
+                  <h4 style="color:blue">[合計金額]</h4>
+                  <h3 style="color:yellow;background:#000;text-align:right" id="uriage"><span style="color:#fff;">円</span></h3>
+                  <form class="form-inline">
+                    <label>金額入力ください:</label>
+                    <input type="number" id="input-money"  class="form-control" style="width:100%;" placeholder="お預かり金額入力ください"/><br><br>
+                    <div class="text-center">
+                      <input type="button" class="btn btn-primary" value="会計" onclick="clearMoney2()"/>
+                    </div>
+                  </form>
+                </div>
+              </div><!-- body -->
+            
+        </div> <!-- content-->s
+        </div>  <!-- dialog-->
+  
+    </div>
+
+  <!-- /会計モーダル-->
+
+
+
+
+
+<!-- 小計エリア-->
+
+<table class="table calc-table">
+  <td width=17%><h4 style="font-weight:bold;">小計:</h4></td>
+  <td><div id="price-number" class="clac-number" style="text-align:right;">0円</div></td>
+</table> 
+
 
 <!-- 会計小計エリア-->
 <table class="table calc-table">
@@ -28,7 +70,7 @@
 
 
       
-<table class="table table-bordered item-table">
+<table class="table table-bordered item-table" id="item-table">
   <thead>
     <tr>
       <th width="60%;">商品名</th>
@@ -45,10 +87,19 @@
   var number = document.getElementById('phone-number');
   var btn = document.getElementById('add-button');
   var tbody = document.getElementById('tbody');
-  var table = document.querySelector('table');
+  var table = document.getElementById('item-table');
   var priceLabel = document.getElementById('price-number');
   var count = 0;
   var price = 0;
+  var uriage = document.getElementById('uriage');
+   var array = [];
+
+  if(count == 0){
+          table.style.display = "none";
+    }
+    else{
+      table.style.display = "table";
+    }
   
   Quagga.init({
   inputStream: {
@@ -107,8 +158,10 @@ const calc = isbn => {
 }
 function addTableItem() {
     if(number.value == "") return;
+    table.style.display = "table";
     $.ajax({
           url: 'https://young-castle-65049.herokuapp.com/sends/'+number.value,
+          /*url: 'http://localhost:3000/sends/'+number.value,*/
           type: 'GET',
           dataType:'json',
         }).done(function(res){
@@ -124,7 +177,8 @@ function addTableItem() {
          td2.style.color = "red";
          td2.id = "td"+count;
          price += res.baika;
-         priceLabel.textContent = "小計"+price+"円";
+         priceLabel.textContent = price+"円";
+         uriage.textContent = price+"円";
 
 
          var td3 = document.createElement('td');
@@ -136,8 +190,11 @@ function addTableItem() {
             var tr = document.getElementById('tr'+deletebtn.id);
             var deleteTd = document.getElementById("td"+deletebtn.id);
             price -= Number(deleteTd.textContent);
-             priceLabel.textContent = "小計"+price+"円";
+            priceLabel.textContent = price+"円";
+            uriage.textContent = price+"円";
             tbody.removeChild(tr);
+            if(table.rows.length == 1){table.style.display="none";} /*要素なくなったら*/
+            
          });
          td3.appendChild(deletebtn);
 
@@ -146,9 +203,37 @@ function addTableItem() {
          tr.appendChild(td3);
          tbody.appendChild(tr);
           count++;
+           array.push({name: td.textContent, num: number.value,str:"cat"});
       });
-     
 }
+      /*会計処理*/
+function clearMoney2() {
+ var inputMoney = document.getElementById('input-money');
+  var money = Number(inputMoney.value);
+  var tsuri = money - price;
+  if(tsuri >= 0){
+     $.ajax({
+       /*url: "http://localhost:3000/getMoney/"+money,*/
+       url: "https://young-castle-65049.herokuapp.com/getMoney/"+money,*/
+       type:"POST",
+       data: {obj: array},
+       dataType:"json",
+       
+     }).done(function(){
+        
+     });
+    alert("ありがとございます。お釣りは"+String(tsuri)+"です。");
+    $('#calc-modal').modal('hide');
+    price = 0;
+    number.value = "";
+    priceLabel.textContent = price+"円"; /*会計ラベル初期化
+    count = 0;            /*テーブルの初期化*/
+    table.style.display = "none";
+
+  }
+  else alert("お金が足りません。");
+}
+
 </script>
 
 
