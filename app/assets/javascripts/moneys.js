@@ -19,7 +19,7 @@ function clearMoney() {
       $('#calc-modal').modal('hide');
       price = 0;
       number.value = "";
-      priceLabel.textContent = price+"円"; /*会計ラベル初期化
+      priceLabel.textContent = price+"円"; /*会計ラベル初期化*/
       count = 0;            /*テーブルの初期化*/
       table.style.display = "none";
   
