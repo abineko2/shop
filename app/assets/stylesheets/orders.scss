@@ -57,6 +57,11 @@
     }
     /*注文確認*/
     .order-confirm{margin-bottom: 1%;}
+    /*スマホ注文ページ*/
+    .phone-order{
+        background: #fff;
+        th{background-color:#005FFF;color:#fff;text-align: center;}
+    }
    
     @media screen and (max-width:767px) {
         .item-title{font-size: 12px;}

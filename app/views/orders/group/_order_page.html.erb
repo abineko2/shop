@@ -1,0 +1,21 @@
+<%= provide(:title,"|発注処理") %>
+<!-- レコード数で分岐 -->
+<% if @items.all.count >=5 %>
+  <style>
+  .pagination{margin-bottom:-30px;}
+  </style>
+<% end %>
+
+<div id="order-modal" class="modal fade" role="dialog" tabindex="-1" ariahidden="true"></div>
+
+<div class="text-center">
+ <h1>発注作業ページ</h1>
+</div>
+<div style="border-top:1px dotted #c0c0c0;"></div>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+  <!-- ページネーション -->
+  <%= will_paginate @items, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
+</div>  
+</div><br><br>

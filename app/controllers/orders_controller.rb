@@ -1,11 +1,16 @@
 class OrdersController < ApplicationController
-#発注topページ
+  before_action :index_page,only:[:index, :index2]
+ 
+  #発注topページ
 
   def index
-    order_week_model
-    @week = order_week
-    @items = Item.paginate(page: params[:page], per_page: 5).order('id asc')
   end
+
+  #発注topスマホページ
+
+  def index2
+  end
+  
 
   #モーダル
 
@@ -119,6 +124,11 @@ def request_parameter
   params.permit(requests: [:status])[:requests]
 end
 
-  
+#indexページ(pc,phone)
+def index_page
+  order_week_model
+  @week = order_week
+  @items = Item.paginate(page: params[:page], per_page: 3).order('id asc')
+end  
   
 end

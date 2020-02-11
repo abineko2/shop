@@ -41,6 +41,9 @@ module OrdersHelper
       order.status = 0
       order.save
     end  
-  end    
-    
+  end 
+#スマホ版アイテム数検索
+    def phoneOrderNum(item,day)
+      @number = item.orders.find_by(order_day: day).oder_number     
+    end     
 end

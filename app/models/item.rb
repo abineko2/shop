@@ -1,5 +1,8 @@
 class Item < ApplicationRecord
   has_many :orders, dependent: :destroy
+  validates :name, presence: true, length: {maximum: 12}
+  
+  
 
 #降順担保
 scope :recent, -> { order(id: :desc) }

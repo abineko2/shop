@@ -1,22 +1,9 @@
-<%= provide(:title,"|発注処理") %>
-<!-- レコード数で分岐 -->
-<% if @items.all.count >=5 %>
-  <style>
-  .pagination{margin-bottom:-30px;}
-  </style>
-<% end %>
+   
+   <!--発注共通ページ-->
+   <%= render 'orders/group/order_page' %>
 
-<div id="order-modal" class="modal fade" role="dialog" tabindex="-1" ariahidden="true"></div>
-
-<div class="text-center">
- <h1>発注作業ページ</h1>
-</div>
-<div style="border-top:1px dotted #c0c0c0;"></div>
-
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-  <!-- ページネーション -->
-  <%= will_paginate @items, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
     <table class="table">
       <thead>
         
@@ -39,7 +26,7 @@
         <% @items.each do |item| %>
          <tr>
             <td class="item-td" rowspan="2">
-              <strong class="item-title"><%= item.name %></strong><br>
+              <strong class="item-title">&emsp;<%= item.name %></strong><br>
               <strong>売価/原価<span style="color:red"><%= item.baika %></span>円/<%= item.genka %>円</strong><br>
               <%= link_to "一週間まとめて",one_week_order_path(item),remote:true,class:"btn btn-primary"%>
             </td>
