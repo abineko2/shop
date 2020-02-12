@@ -7,7 +7,7 @@
     </button>
      <div class="text-center"><h3><%= "商品名:#{@order.item.name}" %></h3></div>
      <%= form_with(model:@order,url:orderOne_order_path(@order,params:{phone: params[:phone]}),local:true,methods: :patch) do |f|%>
-     <%= f.number_field :oder_number,class:"form-control",readonly:true,id:"modal-input",style:"text-align:right;background:#000;color:#fff;font-size:26px;" %><br>
+     <%= f.number_field :oder_number,class:"form-control",readonly:true,id:"modal-input",style:"text-align:right;background:#000;color:#fff;font-size:20px;padding:3% 0;" %><br>
      <div style="border-top:1px dotted #c0c0c0;"></div>
       <div class="row">
        <div class="col-md-10 col-md-offset-1"><br>
