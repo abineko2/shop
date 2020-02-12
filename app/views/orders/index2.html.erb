@@ -27,7 +27,7 @@
             </tr>
             <% @week.each do |day| %>
               <tr>
-                <th style="width:20%;"><%= day.to_s(:date_month) %></th>
+                <th style="width:20%;background:#005FFF;color:#fff;text-align:center;"><%= day.to_s(:date_month) %></th>
                 <td style="text-align:center;"><%= phoneOrderNum(item,day) %></td>
                 <td></td>
               </tr>
