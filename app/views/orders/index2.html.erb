@@ -3,7 +3,7 @@
 
   <table class="table phone-order">
     <thead>
-      <th style="background:blue;" colspan="2">商品</th>
+      <th style="background:blue; text-align:center; color:#fff;" colspan="2">商品</th>
     </thead>
     <tbody>
       <% @items.each do |item| %>
@@ -21,9 +21,9 @@
          <td colspan="2">
           <table class="table table-bordered internal-table">
             <tr>
-              <th>日付</th>
-              <th>発注数</th>
-              <th>状況</th>
+              <th style="background:#blue;color:#fff;text-align:center;">日付</th>
+              <th style="background:#blue;color:#fff;text-align:center;">発注数</th>
+              <th style="background:#blue;color:#fff;text-align:center;">状況</th>
             </tr>
             <% @week.each do |day| %>
               <tr>
