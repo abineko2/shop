@@ -45,5 +45,9 @@ module OrdersHelper
 #スマホ版アイテム数検索
     def phoneOrderNum(item,day)
       @number = item.orders.find_by(order_day: day).oder_number     
-    end     
+    end 
+#スマホ版日付,アイテムからorderインスタンス取得
+    def day_instance(item, day)
+      @order = item.orders.find_by(order_day: day)
+    end          
 end

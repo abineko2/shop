@@ -25,11 +25,27 @@
               <th style="background:#005FFF;color:#fff;text-align:center;">発注数</th>
               <th style="background:#005FFF;color:#fff;text-align:center;">状況</th>
             </tr>
-            <% @week.each do |day| %>
+            <% @week.each do |dy| %>
+              <% day = day_instance(item, dy) %>
               <tr>
-                <th style="width:20%;background:#005FFF;color:#fff;text-align:center;"><%= day.to_s(:date_month) %></th>
-                <td style="text-align:center;"><%= phoneOrderNum(item,day) %></td>
-                <td></td>
+                <th style="width:20%;background:#005FFF;color:#fff;text-align:center;"><%= dy.to_s(:date_month) %></th>
+                <td style="text-align:center;">
+                  <% if (day.status == "" || day.status == "申請中") && (day.order_day >= Date.today+2) %>
+                    <%= link_to day.oder_number, modal_order_path(day,params:{phone: "phone"}),remote:true, class:"oder-number-link" %>
+                  <% elsif day.status == "発送済み"  %>  
+                    <label class="status-2"><%= day.oder_number %></label>
+                  <% elsif (day.status == "在庫切れ" || day.status == "終売")   %>  
+                    <label class="status-3-4"><%= day.oder_number %></label><br>
+                    <label class="status-3-4">×</label>
+                 <% else %>   
+                    <label style="font-size:18px;"><%= day.oder_number %></label>
+                 <% end %>  
+                </td>
+                <!-- 申請状況-->
+
+                <td class="item-order-status">
+                 <%= day.status %>
+               </td>
               </tr>
             <% end %>
           </table>

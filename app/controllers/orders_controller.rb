@@ -39,8 +39,13 @@ class OrdersController < ApplicationController
       flash[:success] = "入力しました。"
     else
       flash[:danger] = "失敗しました。"  
-    end  
-    redirect_to orders_path
+    end
+    if params[:phone].present?
+      redirect_to index2_orders_path
+    else
+      redirect_to orders_path
+    end      
+  
   end
 
  #一週間発注処理
