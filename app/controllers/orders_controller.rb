@@ -24,6 +24,12 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+   #モーダル1週間スマホ
+
+   def one_week2
+    @item = Item.find(params[:id])
+  end
+
 
 
   #個別発注処理

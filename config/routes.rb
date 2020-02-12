@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     
     get 'modal'     #注文際モーダル
     get 'one_week'  #注文一週間モーダル
+    get 'one_week2'  #注文一週間モーダルスマホ
     patch 'orderOne'  #注文
   end  
   collection do 
