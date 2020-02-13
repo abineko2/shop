@@ -27,7 +27,10 @@ class OrdersController < ApplicationController
    #モーダル1週間スマホ
 
    def one_week2
-    @item = Item.find(params[:id])
+     @item = Item.find(params[:id])
+     @first_day = Date.today
+     @end_day = @first_day.end_of_month
+     @dates = @item.item_order_day    #=>そのアイテム一週間分
   end
 
 
@@ -65,8 +68,13 @@ class OrdersController < ApplicationController
       elsif item[:oder_number].to_i <=0  
         order.update_attributes(status: 0)
       end  
-    end  
-    redirect_to orders_path
+    end
+    flash[:success] = "更新しました。"
+    if params[:phone]
+      redirect_to index2_orders_path
+    else      
+      redirect_to orders_path
+    end 
   end
   
 #発注確認

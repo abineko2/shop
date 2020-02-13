@@ -1,0 +1,37 @@
+<%= provide(:title,"週間発注") %>
+<div class="text-center">
+  <h3>一週間まとめて発注</h3>
+  <h1><%= "[#{@item.name}]" %></h1>
+</div>
+<div style="border-top:1px dotted #000;margin-bottom:1%;"></div>
+<%= form_with(url:orderWeek_orders_path(params:{phone: true}),local:true,method: :patch) do |f| %>
+
+<table class="table table-bordered">
+  <tr>
+     <th width="20%" style="background:blue;">日付</th>
+     <td style="background:blue;text-align:center;color:#fff;font-weight:bold;">発注数量</td>
+  </tr>
+  <% @dates.each_with_index do |date,i| %>
+  　<%= fields_for "orders[]",date do |af| %>
+    <tr>
+      <th width="20%"><p></p><%= date.order_day.to_s(:date_month) %></th>
+      <td>
+        <%= af.number_field :oder_number,class:"form-control",step:0,min:0 %>
+      </td>
+    </tr>
+    <% end %>
+  <% end %>
+</table>
+<div class="text-center">
+  <%= f.submit "一括発注",class:"btn btn-primary btn-block",style:"padding:15px 0;margin-bottom:3%;" %>
+  <%= link_to "戻る", index2_orders_path,class:"btn btn-default btn-block",style:"padding:15px 0"%>
+</div>
+<% end %>
+
+<style>
+  h3{color:blue;font-weight:bold;}
+  h1{color:#000;font-weight:bold;}
+  table{background:#fff;vertical-align:middle;}
+  th{background:#005FFF;color:#f0f0f0;text-align:center;vertical-align:middle;}
+  td{height:40px;text-align:right;}
+</style>
