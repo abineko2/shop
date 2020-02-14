@@ -7,6 +7,12 @@ class ItemsController < ApplicationController
     @items = Item.paginate(page: params[:page], per_page: 5).order('id asc')
   end
 
+  #モバイル版アイテム一覧
+  def phone
+    @flash = params[:para] if params
+    @items = Item.paginate(page: params[:page], per_page: 5).order('id asc')  
+  end
+
   #新規登録モーダル
   def new
     @item = Item.new

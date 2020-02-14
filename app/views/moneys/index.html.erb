@@ -16,9 +16,10 @@
 
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3 top-row">
+  <div class="col-md-6 col-md-offset-3 top-row">    <!--pc-linkはpc phone-linkはスマホで表示-->
     <%= link_to "売り上げ管理表", uriage_moneys_path,class:"btn btn-primary top-bt" %>
-    <%= link_to "商品管理表", items_path,class:"btn btn-primary top-bt" %>
+    <%= link_to "商品管理表", items_path,class:"btn btn-primary top-bt pc-link" %>
+    <%= link_to "商品管理表", phone_items_path,class:"btn btn-primary top-bt phone-link" %>
     <%= link_to "会計処理", calc_moneys_path,data: {"turbolinks" => false},class:"btn btn-primary top-bt pc-link" %>
     <%= link_to "会計処理", calc2_moneys_path,data: {"turbolinks" => false},class:"btn btn-primary top-bt phone-link" %>
     <%= link_to "発注処理",orders_path,class:"btn btn-primary top-bt pc-link" %>

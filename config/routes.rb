@@ -25,9 +25,11 @@ Rails.application.routes.draw do
   resources :items do
     member do
       get 'deleteModal'
+     
     end
     collection do
       patch 'stock'
+      get 'phone'                            #=>モバイル版商品管理ページ
     end    
   end 
 

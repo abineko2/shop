@@ -1,0 +1,111 @@
+<%= render 'flash' %>
+
+<!-- レコード数で分岐 -->
+<% if @items.all.count >=5 %>
+  <style>
+  .pagination{margin-bottom:-1%;}
+  </style>
+<% end %>
+
+
+<div class="text-center item_h1_index">
+  <h1>商品管理表</h1>
+</div>
+<!-- モーダル -->
+<div id="item-modal" class="modal fade" role="dialog" tabindex="-1" ariahidden="true"></div>
+
+<div style="border-top:1px dotted #a0a0a0"></div><p></p>
+
+<!-- row -->
+<div class="row">
+  <!-- col -->
+   <div class="col-md-12 col-md-offset-2 item_input_row">
+   <!-- ページネーション -->
+
+  <div class="text-center">
+    <%= will_paginate @items, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
+  </div>
+
+  <div class="text-center" style="margin:0 10% 2% 0;"><h3>[一覧]</h3></div>
+   <% if @items.count > 0 %>  
+        <%= form_with(url:stock_items_path,local:true,method: :patch) do |f| %>
+        &emsp;&emsp;<%= link_to "在庫調整","#",class:"btn btn-primary",style:"background:#0f85e6;color:#fff;padding:5% 2%;"%><p></p>
+        <table class="table item_input_table2">
+          <thead>
+            <tr>
+              <th height="60px" width="80%;">商品名<p></p></th>
+              <th height="60px">編集/削除<p></p></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @items.each do |item| %>
+              <tr>
+               <!-- テーブル左エリア-->
+                <td>
+                  <table class="table tv-phone">
+                    <tr>
+                      <td colspan="2">
+                        <strong style="font-size:18px;"><%= item.name%></strong><p style="border-bottom:1px dotted #c0c0c0;"></p>
+                        <strong>
+                          原価:<span style="color:red"><%= item.genka %></span>円/
+                          売価:<span style="color:red"><%= item.baika %></span>円
+                        </strong><p style="border-bottom:1px dotted #c0c0c0;"></p>  
+                        <strong>JANコード:<%= item.jan %></strong>
+                      </td>
+                    </tr>
+
+                    <tr>
+                       <th>在庫金額</th>
+                       <th>利益率</th>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center;border:1px solid #f0f0f0;"><%= item.stockMoney %>円</td>
+                        <td style="text-align:center;border:1px solid #f0f0f0;"><%= item.itemRate %>%</td>
+                    </tr>    
+                  </table>    
+                </td>
+                 <!-- /テーブル左エリア-->
+
+
+                 <!-- テーブル右-->
+                 <td>
+                    <%= link_to "編集", edit_item_path(item),remote:true,class:"btn btn-primary btn-block",style:"padding:32px 0;" %>
+                    <%= link_to "削除", deleteModal_item_path(item),remote:true,class:"btn btn-danger btn-block",style:"padding:32px 0;" %>
+                 </td>
+                <!-- テーブル右-->
+              </tr>
+            <% end %>
+          </tbody>
+
+        </table>
+        
+
+        <!-- 在庫確定ボタン-->
+        <div class="text-right">
+           <%= f.submit "在庫確定",class:"btn btn-primary",id:"submit_bt" %>
+        </div>
+        <% end %><!-- form終了 -->
+    <% else %> 
+     <h2>商品が登録されてません</h2>
+    <% end %> <!--商品あるか -->
+   </div>
+   
+  <!-- col -->
+</div><br>
+<div class="text-center">
+     <%= link_to "新規登録", new_item_path,remote:true,class:"btn btn-primary btn-block",style:"padding:5% 0;" %><p></p>
+     <%= link_to "戻る", root_path,class:"btn btn-default btn-lg btn-block",style:"padding:5% 0%;" %><br>
+</div>
+<!-- row -->
+<style>
+   .item_input_table2{
+        background-color: beige;
+        max-width: 100%;
+        width:100%;
+    }
+    .item_input_table2 th{background:#0f85e6;border-right: 0.5px dotted #fff;color: #fff;text-align:center;}
+    .tv-phone{
+        background:"#fff";
+     }
+    .tv-phone th{height:10px;background:#0000bb} 
+</style>
