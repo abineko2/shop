@@ -1,0 +1,36 @@
+
+<div class="text-center item_h1_index">
+  <h1>在庫調整ページ</h1>
+</div>
+
+<div style="border-top:1px dotted #a0a0a0"></div><p></p>
+
+<%= form_with(url:stock_items_path(params:{phone: true}),local:true,method: :patch) do |f| %>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>商品名</th>
+        <th>在庫</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @items.each do |item| %>
+      <%= fields_for "items[]",item do |af| %>
+        <tr>
+          <td><p></p><%= item.name %></td>
+          <td style="text-align:right"><%= af.number_field :stock,class:"form-control" %></td>
+        </tr>
+      <% end %>  
+    <% end %>
+    </tbody>
+  </table>
+<div class="text-center">
+  <%= f.submit "調整する",class:"btn btn-primary",style:"padding:5%;width:90%;"%><p></p>
+  <%= link_to "戻る",phone_items_path,class:"btn btn-default",style:"padding:5%;width:90%;"%>
+  <% end %>
+</div>
+<style>
+   table{background:"#fff;"}
+   th{background:#0f85e6;color:#fff;text-align:center;}
+   td{background:#fff;font-weight:bold;text-align:center;height:60px;}
+</style>

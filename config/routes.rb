@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     collection do
       patch 'stock'
       get 'phone'                            #=>モバイル版商品管理ページ
+      get 'itemStock'                        #=>モバイル版在庫管理ページ
     end    
   end 
 

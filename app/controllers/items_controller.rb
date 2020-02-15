@@ -13,6 +13,11 @@ class ItemsController < ApplicationController
     @items = Item.paginate(page: params[:page], per_page: 5).order('id asc')  
   end
 
+  #モバイル版アイテム一覧
+  def itemStock
+    @items =  Item.paginate(page: params[:page], per_page: 20).order('id asc')  
+  end
+
   #新規登録モーダル
   def new
     @item = Item.new
@@ -56,9 +61,14 @@ class ItemsController < ApplicationController
   def stock
     stock_parameter.each do |id,item|
       obj = Item.find id
-      obj.update_attributes(item)
+      obj.update_attributes(item)  
     end  
-    redirect_to items_path(params:{para:5})
+    if params[:phone]
+      redirect_to phone_items_path(params:{para:5})
+    else
+      redirect_to items_path(params:{para:5})
+    end    
+    
   end
   
   

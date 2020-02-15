@@ -29,7 +29,7 @@
   <div class="text-center" style="margin:0 10% 2% 0;"><h3>[一覧]</h3></div>
    <% if @items.count > 0 %>  
         <%= form_with(url:stock_items_path,local:true,method: :patch) do |f| %>
-        &emsp;&emsp;<%= link_to "在庫調整","#",class:"btn btn-primary",style:"background:#0f85e6;color:#fff;padding:5% 2%;"%><p></p>
+        &emsp;&emsp;<%= link_to "在庫調整",itemStock_items_path,class:"btn btn-primary",style:"background:#0f85e6;color:#fff;padding:5% 2%;"%><p></p>
         <table class="table item_input_table2">
           <thead>
             <tr>
@@ -45,12 +45,12 @@
                   <table class="table tv-phone">
                     <tr>
                       <td colspan="2">
-                        <strong style="font-size:18px;"><%= item.name%></strong><p style="border-bottom:1px dotted #c0c0c0;"></p>
-                        <strong>
+                        &emsp;<strong style="font-size:18px;"><%= item.name%></strong><p style="border-bottom:1px dotted #c0c0c0;"></p>
+                        &emsp;<strong>
                           原価:<span style="color:red"><%= item.genka %></span>円/
                           売価:<span style="color:red"><%= item.baika %></span>円
                         </strong><p style="border-bottom:1px dotted #c0c0c0;"></p>  
-                        <strong>JANコード:<%= item.jan %></strong>
+                        &emsp;<strong>JANコード:<%= item.jan %></strong>
                       </td>
                     </tr>
 
@@ -69,8 +69,8 @@
 
                  <!-- テーブル右-->
                  <td>
-                    <%= link_to "編集", edit_item_path(item),remote:true,class:"btn btn-primary btn-block",style:"padding:32px 0;" %>
-                    <%= link_to "削除", deleteModal_item_path(item),remote:true,class:"btn btn-danger btn-block",style:"padding:32px 0;" %>
+                    &emsp;<%= link_to "編集", edit_item_path(item),remote:true,class:"btn btn-primary",style:"padding:32px 0;width:90%;margin-top:-28%;" %>
+                    &emsp;<%= link_to "削除", deleteModal_item_path(item),remote:true,class:"btn btn-danger",style:"padding:32px 0;width:90%;margin-top:-23%;" %>
                  </td>
                 <!-- テーブル右-->
               </tr>
