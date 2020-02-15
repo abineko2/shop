@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :moneys do
     collection do
       get 'uriage'                             #売り上げ管理表
+      get 'uriagePhone'                        #売り上げ管理表phone
       patch 'input'                            
       get 'calc'                               #会計処理ページ
       get 'calc2'                              #会計処理ページスマホ
@@ -17,7 +18,7 @@ Rails.application.routes.draw do
       get 'buyerTop'
     end   
   end  
-  post 'getMoney/:money',to:'moneys#getMoney'  #ajaxデータ格納
+  post 'getMoney/:money',to:'moneys#getMoney'              #ajaxデータ格納
   get 'sends/:jan',to:"moneys#sends", as: :send_ajax       #ajax itemデータ受信
   get 'writeBudget/:date',to:"moneys#writeBudget",as: :writeBudget_money
   
@@ -40,17 +41,17 @@ Rails.application.routes.draw do
  resources :orders do
   member do
     
-    get 'modal'     #注文際モーダル
-    get 'one_week'  #注文一週間モーダル
-    get 'one_week2'  #注文一週間モーダルスマホ
-    patch 'orderOne'  #注文
+    get 'modal'                               #注文際モーダル
+    get 'one_week'                            #注文一週間モーダル
+    get 'one_week2'                           #注文一週間モーダルスマホ
+    patch 'orderOne'                          #注文
   end  
   collection do 
-    get 'index2'      #注文ページスマホ
-    patch 'orderWeek'  #注文一週間
-    get 'check'      #注文確認
-    patch 'requests'  #申請処理(買い付け)
-    get 'requestConfirm'  #処理確定ページ
+    get 'index2'                              #注文ページスマホ
+    patch 'orderWeek'                         #注文一週間
+    get 'check'                               #注文確認
+    patch 'requests'                          #申請処理(買い付け)
+    get 'requestConfirm'                      #処理確定ページ
   end     
  end 
 
