@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   root "sessions#new"                          #topページ
-  get 'login',to:'sessions#new'                #ログインページ
+  get 'login',to:'sessions#new'                #ログインページss
   post 'login',to:'sessions#create'            #ログイン処理
   delete 'logout',to: 'sessions#destroy'       #ログアウト処理
 
