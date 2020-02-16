@@ -12,8 +12,8 @@
             &emsp;&emsp;<%= @first_day.to_s(:month) %>&emsp;&emsp;
           <%= link_to "→", uriage_moneys_path(params:{first_day: @first_day.next_month}),class:"btn btn-primary" %>  
         </td>
-        <td>月売り上げ実績合計:&emsp;<strong style="color:red"><%= @first_money.uriageTotal(@first_day,@last_day) %></strong></td>
-        <td>月売り上げ予算合計:&emsp;<strong style="color:green"><%= @first_money.yosanTotal(@first_day,@last_day) %></strong></td>
+        <td><p></p>月売り上げ実績合計:&emsp;<strong style="color:red"><%= @first_money.uriageTotal(@first_day,@last_day) %></strong>円</td>
+        <td><p></p>月売り上げ予算合計:&emsp;<strong style="color:green"><%= @first_money.yosanTotal(@first_day,@last_day) %></strong></td>
       </table>
       <div style="border-top:1px dotted #c0c0c0;margin-bottom:3%;"></div>
        <%= link_to "戻る", root_path, class:"btn btn-default" ,style:"width:20%;margin-bottom:4px;" %>
@@ -40,7 +40,7 @@
              <td><%= day.t_day.to_s(:date_month) %></td>
              <td><%= %w[日 月 火 水 木 金 土][day.t_day.wday] %></td>
              <td><strong style="color:red"><%= day.uriage if day.uriage.present? %></strong></td>
-             <td><strong><%= day.yosan if day.yosan.present? %></strong></td>
+             <td></td>
              <td><%= day.sagaku %></td>
              <td><%= day.noto if day.noto.present? %></td>
            </tr>
