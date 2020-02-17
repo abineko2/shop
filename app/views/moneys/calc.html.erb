@@ -67,7 +67,7 @@
     
     table.style.display = "table";
     $.ajax({
-          url: 'https://young-castle-65049.herokuapp.com/sends/'+number.value,
+          url: 'https://uematsu.herokuapp.com/sends/'+number.value,
           /*url: 'http://localhost:3000/sends/'+number.value,*/ 
           type: 'GET',
           dataType:'json',
@@ -163,7 +163,7 @@ function clearMoney() {
     if(tsuri >= 0){
        $.ajax({
          /*url: "http://localhost:3000/getMoney/"+money,*/
-         url: "https://young-castle-65049.herokuapp.com/getMoney/"+money,
+         url: "https://uematsu.herokuapp.com/getMoney/"+money,
          type:"POST",
          data: {obj: array},
          dataType:"json",
