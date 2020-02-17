@@ -3,6 +3,36 @@
   売り上げ管理ページ
 </div>
 <div style="border-top:1px dotted #c0c0c0;margin-bottom:3%;"></div>
+
+<!--現在売り上げテーブル-->
+<table class="table table-bordered tv">
+   <tr>
+     <th colspan="2" style="height:60px;font-size:20px;"><p></p>本日売り上げ情報</th>
+   </tr>
+
+   <tr>
+     <th>現在売り上げ</th>
+     <td style="text-align:center;font-size:18px;"><strong style="color:red"><%= @todayMoney.uriage %></strong>円</td>
+   </tr>
+
+   <tr>
+     <th>本日予算</th>
+     <td style="text-align:center;font-size:18px;"><strong style="color:blue"><%= @todayMoney.yosan %></strong>円</td>
+   </tr>
+
+    <tr>
+     <th>現在実績(%)</th>
+     <td style="text-align:center;font-size:18px;"><strong style="color:red"><%= @todayMoney.resParsent %></strong>%</td>
+   </tr>
+</table>
+<!--/現在売り上げテーブル-->
+
+
+
+
+<p class="text-center text-primary" style="fon-size:26px; font-weight:bold;">月総合売り上げ</p>
+
+
 <!--情報テーブル-->
 <table class="table tv1">
   <tr>
@@ -21,49 +51,49 @@
 </table>
 <!--/情報テーブル-->
 
+<div style="border-top:1px dotted #c0c0c0;margin-bottom:3%;"></div>
+  &emsp;<%= link_to "戻る", root_path, class:"btn btn-default" ,style:"width:40%;margin-bottom:4px;" %>
+<% if @first_money.monthCheck %>
+   <%= link_to "予算入力", writeBudget_money_path(@first_day), class:"btn btn-primary" ,style:"width:40%;margin-bottom:4px;" %>
+ <% end %> 
+
+
 <!--メインテーブル-->
 <table class="table table-bordered tv2">
-  <thead>
-    <tr>
-      <th>日付/売り上げ</th>
-    </tr>
-  </thead> 
-  <tbody>
-    <% @dates.each do |day| %>
-      <tr>
-        <td>
-           <table class="table table-bordered tv3">
-             <tr>
-               <td colspan="2" style="font-weight:bold;">
-                  <%= day.t_day.to_s(:date_month) %>&emsp;(<%= %w[日 月 火 水 木 金 土][day.t_day.wday] %>)
-               </td>
-             </tr>
-
-             <tr>
-               <th>売り上げ金額</th>
-               <th>日割り予算</th>
-             </tr>
-
-              <tr>
-               <td style="color:red;font-weight:bold;"><%= day.uriage if day.uriage.present? %></td>
-               <td style="color:black;font-weight:bold;"><%= day.yosan if day.yosan.present? %></td>
-             </tr>
-
-             <tr>
-                <th colspan="2">備考</th>
-             </tr>
-
-             <tr>
-                <td colspan="2"><%= day.noto if day.noto.present? %></td>
-             </tr>
-
-           </table>
-        </td>
-      </tr>
-    <% end %>
-  </tbody> 
-</table>
-
+        <thead>
+          <tr>
+             <th rowspan="2" style="vertical-align:middle;">日付</th>
+             <th colspan="2" style="width:40%;">売り上げ</th>
+             <th rowspan="2" style="vertical-align:middle;">実績(円)</th>
+          </tr>
+          <tr>
+            <th>売上<p></p>金額(円)</th>
+            <th>日割り<p></p>予算(円）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @dates.each do |day| %>
+           <tr>
+             <td style="font-weight:bold;">
+               <%= day.t_day.to_s(:date_month) %><p></p>
+               (<%= %w[日 月 火 水 木 金 土][day.t_day.wday] %>)
+            </td>
+             <td><p></p><strong style="color:red"><%= day.uriage if day.uriage.present? %></strong></td>
+             <td><p></p><strong style="color:blue"><%= day.yosan if day.yosan.present? %></strong></td>
+             <td>
+                <% unless day.noto.present? %>
+                  <p></p>
+                <% end %>
+                <strong><%= day.sagaku %></strong>
+                <% if day.noto.present? %>
+                  <p></p><%= link_to "備考","#",style:"padding:1px 0;text-decoration:underline;font-weight:bold;"%>
+                <% end %>  
+            </td>
+            
+           </tr>
+          <% end %>
+        </tbody>
+      </table>
 
 <div style="border:1px dotted #c0c0c0"></div>
 
@@ -73,10 +103,12 @@
 
 
 <style>
+ .tv{background:#fff;}
+ .tv th{background:#000;color:#fff;text-align:center;}
  .tv1{background:#fff;}
  .tv1 td{font-weight:bold;}
  .tv2{background:#d0d0d0;}
  .tv2 th{background:##005FFF;text-align:center;color:#fff;}
- .tv2 td{height:40px;background:#a0a0a0;}
+ .tv2 td{height:40px;background:#fffs;}
  .tv3 td{background:#fff;}
 </style>

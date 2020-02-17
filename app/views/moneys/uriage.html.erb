@@ -27,11 +27,11 @@
              <th rowspan="2">曜日</th>
              <th colspan="2">売り上げ</th>
              <th rowspan="2">実績</th>
-             <th rowspan="2">備考</th>
+             <th rowspan="2">備考(円)</th>
           </tr>
           <tr>
-            <th>売り上げ金額</th>
-            <th>日割り予算</th>
+            <th>売り上げ金額(円)</th>
+            <th>日割り予算(円)</th>
           </tr>
         </thead>
         <tbody>
@@ -40,7 +40,7 @@
              <td><%= day.t_day.to_s(:date_month) %></td>
              <td><%= %w[日 月 火 水 木 金 土][day.t_day.wday] %></td>
              <td><strong style="color:red"><%= day.uriage if day.uriage.present? %></strong></td>
-             <td></td>
+             <td><strong style="color:blue"><%= day.yosan if day.yosan.present? %></strong></td>
              <td><%= day.sagaku %></td>
              <td><%= day.noto if day.noto.present? %></td>
            </tr>

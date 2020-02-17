@@ -24,6 +24,7 @@ class MoneysController < ApplicationController
 
   #売り上げ管理表phone
   def uriagePhone
+    @todayMoney = Money.find_by(t_day: Date.today)
   end
   
 #予算入力ページ

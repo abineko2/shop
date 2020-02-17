@@ -40,5 +40,14 @@ class Money < ApplicationRecord
         end   
       return total
     end
+    #現在実績(%)
+    def resParsent
+      yosan = self.yosan.to_f
+      uriage = self.uriage.to_f
+      sagaku = yosan - uriage
+      per  = sagaku/yosan
+      return format("%.1f",per*100)
+    end
+    
     
 end
