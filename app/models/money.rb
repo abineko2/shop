@@ -52,8 +52,7 @@ class Money < ApplicationRecord
       else
         uriage = 0
       end         
-      sagaku = yosan - uriage
-      per  = sagaku/yosan
+      per = uriage / yosan
       return format("%.1f",per*100)
     end
     
