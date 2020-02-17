@@ -36,12 +36,18 @@ class MoneysController < ApplicationController
 #入力処理
 
   def input
+  
     @first_day = Date.parse(params[:first_day])
     money_parameter.each do |id, item|
       money = Money.find id
       money.update_attributes(item)
     end  
-    redirect_to uriage_moneys_url(params:{first_day: params[:first_day]})
+    if params[:phone] == "true"
+      redirect_to uriagePhone_moneys_url(params:{first_day: params[:first_day]})
+    else
+      redirect_to uriage_moneys_url(params:{first_day: params[:first_day]})
+    end  
+    
   end
 #json送信
 

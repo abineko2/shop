@@ -54,7 +54,7 @@
 <div style="border-top:1px dotted #c0c0c0;margin-bottom:3%;"></div>
   &emsp;<%= link_to "戻る", root_path, class:"btn btn-default" ,style:"width:40%;margin-bottom:4px;" %>
 <% if @first_money.monthCheck %>
-   <%= link_to "予算入力", writeBudget_money_path(@first_day), class:"btn btn-primary" ,style:"width:40%;margin-bottom:4px;" %>
+   <%= link_to "予算入力", writeBudget_money_path(@first_day,params:{phone: true}), class:"btn btn-primary" ,style:"width:40%;margin-bottom:4px;" %>
  <% end %> 
 
 
