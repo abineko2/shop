@@ -4,6 +4,9 @@
 </div>
 <div style="border-top:1px dotted #c0c0c0;margin-bottom:3%;"></div>
 
+<!--備考モーダル-->
+<div id="memo" class="modal fade" role="dialog" tabindex="-1" ariahidden="true"></div>
+
 <!--現在売り上げテーブル-->
 <table class="table table-bordered tv">
    <tr>
@@ -86,7 +89,7 @@
                 <% end %>
                 <strong><%= day.sagaku %></strong>
                 <% if day.noto.present? %>
-                  <p></p><%= link_to "備考","#",style:"padding:1px 0;text-decoration:underline;font-weight:bold;"%>
+                  <p></p><%= link_to "備考",memo_money_path(day),remote:true,style:"padding:1px 0;text-decoration:underline;font-weight:bold;"%>
                 <% end %>  
             </td>
             

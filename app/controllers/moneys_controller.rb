@@ -86,6 +86,11 @@ class MoneysController < ApplicationController
 #モーダル
   def clear
   end
+
+#phone版備考モーダル  
+  def memo
+    @money = Money.find(params[:id])
+  end
   
   
 private

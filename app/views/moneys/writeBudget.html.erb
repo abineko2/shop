@@ -40,13 +40,19 @@
           <% end %>
         </tbody>
       </table>
-      <div class="col-md-6 col-md-offset-4">
+      <div class="col-md-6 col-md-offset-4 set">
         <%= link_to "戻る",uriage_moneys_path(params:{first_day: @first_day}), class:"btn btn-default btn-lg"%>
         <%= f.hidden_field :phone, value:"#{params[:phone]}" if params[:phone]  %>
-        <%= f.submit "確定", class:"btn btn-primary btn-lg"%>
+        <%= f.submit "確定", class:"btn btn-primary btn-lg submit"%>
       </div>
       <% end %>
 <!-- col終了 -->
     </div>
 <!-- row終了 -->
 </div>
+  
+<style>
+    @media screen and (max-width: 767px){
+      .set a,.submit{ width:100%;margin-bottom:3%;}
+    }
+</style>

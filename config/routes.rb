@@ -16,7 +16,10 @@ Rails.application.routes.draw do
       get 'calc2'                              #会計処理ページスマホ
       get 'clear'                              #会計清算モーダル"
       get 'buyerTop'
-    end   
+    end 
+    member do
+      get 'memo'                               #phone版備考モーダル 
+    end    
   end  
   post 'getMoney/:money',to:'moneys#getMoney'              #ajaxデータ格納
   get 'sends/:jan',to:"moneys#sends", as: :send_ajax       #ajax itemデータ受信
