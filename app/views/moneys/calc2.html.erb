@@ -99,6 +99,7 @@
     Quagga.start();
     // alert("started");
   }
+  
 })
 
 Quagga.onDetected(success => {
@@ -125,6 +126,7 @@ const calc = isbn => {
 
   return checkDigit === remainder;
 }
+
 function addTableItem() {
     if(number.value == "") return;
     table.style.display = "table";

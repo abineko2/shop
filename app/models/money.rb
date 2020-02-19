@@ -51,9 +51,13 @@ class Money < ApplicationRecord
         uriage = self.uriage.to_f
       else
         uriage = 0
-      end         
-      per = uriage / yosan
-      return format("%.1f",per*100)
+      end
+      unless uriage == 0 ||  yosan == 0       
+        per = uriage / yosan
+        return format("%.1f",per*100)
+      else
+        return 0  
+      end  
     end
     
     
